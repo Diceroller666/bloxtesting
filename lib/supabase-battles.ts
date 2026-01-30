@@ -159,11 +159,21 @@ export async function addBotToLobby(battleId: string): Promise<Battle | null> {
 
   const botNames = ['Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Theta']
   const botName = `BOT ${botNames[Math.floor(Math.random() * botNames.length)]}`
+  const botId = `bot_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+
+  // Create bot user in database with high balance
+  await supabase.from('users').upsert({
+    id: botId,
+    username: botName,
+    email: `${botId}@bot.local`,
+    password_hash: 'bot',
+    balance: 999999.00
+  }, { onConflict: 'id' })
 
   const updatedPlayers = [
     ...battle.players,
     {
-      userId: `bot_${Date.now()}`,
+      userId: botId,
       username: botName,
       isBot: true,
       totalUnboxed: 0,

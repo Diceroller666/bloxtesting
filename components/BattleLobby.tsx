@@ -46,6 +46,8 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const [battleComplete, setBattleComplete] = useState(false)
   const [winner, setWinner] = useState<BattlePlayer | null>(null)
   const [totalWinnings, setTotalWinnings] = useState(0)
+  const [roundItems, setRoundItems] = useState<any[]>([])
+  const [isUpdatingBalance, setIsUpdatingBalance] = useState(false)
 
   useEffect(() => {
     // Reset all states when battleId changes (new battle)
@@ -139,6 +141,15 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     
     setIsSpinning(true)
     
+    // Generate items for this round (one per player)
+    const items = battle.players.map(() => ({
+      name: 'M4A4',
+      skin: 'Desolate Space',
+      value: Math.random() * 15 + 0.05,
+      dropRate: (Math.random() * 40 + 5).toFixed(1)
+    }))
+    setRoundItems(items)
+    
     // Step 1: Disable transition and reset to start position
     setTransitionEnabled(false)
     setReelPositions([0, 0, 0, 0])
@@ -159,27 +170,47 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
 
     setTimeout(() => {
       setIsSpinning(false)
+      
+      // Update player totals with the items they won this round
+      const updatedPlayers = battle.players.map((player, index) => ({
+        ...player,
+        totalUnboxed: player.totalUnboxed + items[index].value
+      }))
+      setBattle({ ...battle, players: updatedPlayers })
+      
       if (currentRound < (cases.length || 3)) {
         setTimeout(() => {
           setCurrentRound(prev => prev + 1)
         }, 2000)
       } else {
-        // Battle complete - calculate winner
-        setTimeout(() => {
-          const playersWithTotals = battle.players.map(p => ({
-            ...p,
-            totalUnboxed: Math.random() * 80 + 10
-          }))
-          
-          const winningPlayer = playersWithTotals.reduce((max, player) => 
+        // Battle complete - calculate winner and award balance
+        setTimeout(async () => {
+          const winningPlayer = updatedPlayers.reduce((max, player) => 
             player.totalUnboxed > max.totalUnboxed ? player : max
           )
           
-          const total = playersWithTotals.reduce((sum, p) => sum + p.totalUnboxed, 0)
+          const total = updatedPlayers.reduce((sum, p) => sum + p.totalUnboxed, 0)
           
           setWinner(winningPlayer)
           setTotalWinnings(total)
           setBattleComplete(true)
+          
+          // Award balance to winner
+          if (!isUpdatingBalance && !winningPlayer.isBot) {
+            setIsUpdatingBalance(true)
+            try {
+              await fetch('/api/users/update-balance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  userId: winningPlayer.userId,
+                  amount: total
+                })
+              })
+            } catch (error) {
+              console.error('Failed to update balance:', error)
+            }
+          }
         }, 2000)
       }
     }, 3500)
@@ -405,7 +436,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                     {playerIndex === 2 && <span className="text-yellow-400 text-xl">⭐</span>}
                   </div>
                   <div className="text-sm text-gray-400">
-                    Total Unboxed <span className="text-empire-gold font-bold">💰 {(player.totalUnboxed || (Math.random() * 80 + 10)).toFixed(2)}</span>
+                    Total Unboxed <span className="text-empire-gold font-bold">💰 {player.totalUnboxed.toFixed(2)}</span>
                   </div>
                 </div>
               ))}
@@ -419,16 +450,16 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                 <div key={playerIndex} className="bg-empire-bg-light p-4 border-t border-gray-800">
                   <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
                     <span>#{currentRound}</span>
-                    <span>{(Math.random() * 40 + 5).toFixed(1)}%</span>
+                    <span>{roundItems[playerIndex]?.dropRate || 0}%</span>
                   </div>
                   
                   <div className="flex flex-col items-center">
                     <div className="w-24 h-16 flex items-center justify-center mb-2">
                       <div className="text-5xl">🔫</div>
                     </div>
-                    <div className="text-xs text-gray-500 mb-1">[MW] M4A4</div>
-                    <div className="text-sm font-semibold text-purple-400 mb-1">Desolate Space</div>
-                    <div className="text-empire-gold font-bold">💰 {(Math.random() * 15 + 0.05).toFixed(2)}</div>
+                    <div className="text-xs text-gray-500 mb-1">{roundItems[playerIndex]?.name || 'Item'}</div>
+                    <div className="text-sm font-semibold text-purple-400 mb-1">{roundItems[playerIndex]?.skin || 'Skin'}</div>
+                    <div className="text-empire-gold font-bold">💰 {(roundItems[playerIndex]?.value || 0).toFixed(2)}</div>
                   </div>
                 </div>
               ))}
