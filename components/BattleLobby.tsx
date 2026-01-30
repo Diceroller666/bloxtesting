@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '@/lib/AuthContext'
 
 interface BattlePlayer {
@@ -48,6 +48,10 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const [totalWinnings, setTotalWinnings] = useState(0)
   const [roundItems, setRoundItems] = useState<any[]>([])
   const [isUpdatingBalance, setIsUpdatingBalance] = useState(false)
+  
+  // Use refs to track accumulated totals across all rounds (avoids stale closure issues)
+  const playerTotalsRef = useRef<number[]>([])
+  const allRoundResultsRef = useRef<any[][]>([])
 
   useEffect(() => {
     // Reset all states when battleId changes (new battle)
@@ -59,6 +63,11 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     setBattleComplete(false)
     setWinner(null)
     setTotalWinnings(0)
+    setRoundItems([])
+    
+    // Reset refs
+    playerTotalsRef.current = []
+    allRoundResultsRef.current = []
     
     fetchBattle()
     const interval = setInterval(fetchBattle, 2000)
@@ -141,6 +150,11 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     
     setIsSpinning(true)
     
+    // Initialize player totals ref if empty
+    if (playerTotalsRef.current.length === 0) {
+      playerTotalsRef.current = battle.players.map(() => 0)
+    }
+    
     // Generate items for this round (one per player)
     const items = battle.players.map(() => ({
       name: 'M4A4',
@@ -149,6 +163,9 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
       dropRate: (Math.random() * 40 + 5).toFixed(1)
     }))
     setRoundItems(items)
+    
+    // Store this round's results in ref
+    allRoundResultsRef.current.push(items)
     
     // Step 1: Disable transition and reset to start position
     setTransitionEnabled(false)
@@ -168,32 +185,64 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
       }, 20)
     }, 50)
 
+    // Capture current round number for use in timeout
+    const thisRound = currentRound
+    const totalRounds = cases.length || 3
+
     setTimeout(() => {
       setIsSpinning(false)
       
-      // Update player totals with the items they won this round
-      const updatedPlayers = battle.players.map((player, index) => ({
-        ...player,
-        totalUnboxed: player.totalUnboxed + items[index].value
-      }))
+      // Add this round's values to the accumulated totals in ref
+      items.forEach((item, index) => {
+        playerTotalsRef.current[index] += item.value
+      })
       
-      // Update battle state with new totals
-      const updatedBattle = { ...battle, players: updatedPlayers }
-      setBattle(updatedBattle)
+      // Update battle state with new totals from ref
+      setBattle(prevBattle => {
+        if (!prevBattle) return prevBattle
+        return {
+          ...prevBattle,
+          players: prevBattle.players.map((player, index) => ({
+            ...player,
+            totalUnboxed: playerTotalsRef.current[index]
+          }))
+        }
+      })
       
-      if (currentRound < (cases.length || 3)) {
+      if (thisRound < totalRounds) {
         setTimeout(() => {
           setCurrentRound(prev => prev + 1)
         }, 2000)
       } else {
         // Battle complete - calculate winner and award balance
         setTimeout(async () => {
-          const winningPlayer = updatedPlayers.reduce((max, player) => 
-            player.totalUnboxed > max.totalUnboxed ? player : max
-          )
+          // Calculate final totals from the ref (source of truth)
+          const finalTotals = playerTotalsRef.current
           
-          // Total pot is sum of all players' winnings
-          const totalPot = updatedPlayers.reduce((sum, p) => sum + p.totalUnboxed, 0)
+          // Find winner (player with highest total)
+          let winnerIndex = 0
+          let highestTotal = finalTotals[0]
+          finalTotals.forEach((total, index) => {
+            if (total > highestTotal) {
+              highestTotal = total
+              winnerIndex = index
+            }
+          })
+          
+          // Calculate total pot (sum of all players' winnings)
+          const totalPot = finalTotals.reduce((sum, total) => sum + total, 0)
+          
+          // Get winner player info
+          const winningPlayer = {
+            ...battle.players[winnerIndex],
+            totalUnboxed: highestTotal
+          }
+          
+          console.log('=== BATTLE COMPLETE ===')
+          console.log('All round results:', allRoundResultsRef.current)
+          console.log('Final player totals:', finalTotals)
+          console.log('Total pot:', totalPot)
+          console.log('Winner:', winningPlayer.username, 'with', highestTotal)
           
           setWinner(winningPlayer)
           setTotalWinnings(totalPot)
@@ -211,6 +260,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                   amount: totalPot
                 })
               })
+              console.log('Balance updated for', winningPlayer.username, 'amount:', totalPot)
             } catch (error) {
               console.error('Failed to update balance:', error)
             }
