@@ -274,12 +274,22 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
       // Step 3: After transition is enabled, start the spin
       setTimeout(() => {
         const itemHeight = 88 // 80px (h-20) + 8px (gap-2)
+        const itemDisplayHeight = 80 // h-20 in pixels
         const winningItemIndex = 15 // The winning item is at index 15 in the repeated pattern
-        const targetScroll = winningItemIndex * itemHeight // Scroll to land on winning item
+        const containerHeight = 320 // h-80 in pixels
+        
+        // Calculate position: we want the CENTER of item 15 to align with the CENTER of the container
+        // Item 15 top edge is at: winningItemIndex * itemHeight
+        // Item 15 center is at: (winningItemIndex * itemHeight) + (itemDisplayHeight / 2)
+        // Container center is at: containerHeight / 2
+        // The reel starts with -50% offset (centers the entire reel)
+        // We need to scroll so item 15's center aligns with container center
+        const itemCenterPosition = (winningItemIndex * itemHeight) + (itemDisplayHeight / 2)
+        const containerCenter = containerHeight / 2
+        const targetScroll = itemCenterPosition - containerCenter
         
         const newPositions = battle.players.map(() => {
-          const randomOffset = Math.random() * 20 - 10 // Smaller random offset for precision
-          return -targetScroll + randomOffset // Scroll to final position
+          return -targetScroll // Scroll to exact final position (no random offset)
         })
         setReelPositions(newPositions)
       }, 20)
