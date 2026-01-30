@@ -48,6 +48,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const [totalWinnings, setTotalWinnings] = useState(0)
   const [roundItems, setRoundItems] = useState<any[]>([])
   const [isUpdatingBalance, setIsUpdatingBalance] = useState(false)
+  const [availableItems, setAvailableItems] = useState<any[]>([])
   
   // Use refs to track accumulated totals across all rounds (avoids stale closure issues)
   const playerTotalsRef = useRef<number[]>([])
@@ -75,6 +76,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     playerItemHistoryRef.current = []
     
     fetchBattle()
+    fetchItems()
     // Only poll while waiting for players - will be cleared when battle starts
     fetchIntervalRef.current = setInterval(fetchBattle, 2000)
     return () => {
@@ -141,6 +143,16 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     }
   }
 
+  const fetchItems = async () => {
+    try {
+      const response = await fetch('/api/items')
+      const data = await response.json()
+      setAvailableItems(data.items || [])
+    } catch (error) {
+      console.error('Failed to fetch items:', error)
+    }
+  }
+
   const handleAddBot = async () => {
     try {
       const response = await fetch(`/api/battles/${battleId}/bots`, {
@@ -178,12 +190,28 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     }
     
     // Generate items for this round (one per player)
-    const items = battle.players.map(() => ({
-      name: 'M4A4',
-      skin: 'Desolate Space',
-      value: Math.random() * 15 + 0.05,
-      dropRate: (Math.random() * 40 + 5).toFixed(1)
-    }))
+    const items = battle.players.map(() => {
+      if (availableItems.length === 0) {
+        // Fallback if items haven't loaded yet
+        return {
+          name: 'M4A4',
+          skin: 'Desolate Space',
+          value: Math.random() * 15 + 0.05,
+          dropRate: (Math.random() * 40 + 5).toFixed(1)
+        }
+      }
+      
+      // Select a random item from available items
+      const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)]
+      
+      return {
+        name: randomItem.weapon_type || randomItem.name,
+        skin: randomItem.skin_name || randomItem.name,
+        value: randomItem.price || Math.random() * 15 + 0.05,
+        dropRate: (Math.random() * 40 + 5).toFixed(1),
+        rarity: randomItem.rarity
+      }
+    })
     setRoundItems(items)
     
     // Store this round's results in ref
