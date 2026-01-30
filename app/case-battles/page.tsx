@@ -45,12 +45,11 @@ function CaseBattlesContent() {
   }
 
   return (
-    <AuthProvider>
-      <div className="flex h-screen bg-empire-bg text-white">
-        <Sidebar />
-        
-        <div className="flex-1 flex flex-col">
-          <Header currentPage="case-battles" setCurrentPage={() => {}} />
+    <div className="flex h-screen bg-empire-bg text-white">
+      <Sidebar />
+      
+      <div className="flex-1 flex flex-col">
+        <Header currentPage="case-battles" setCurrentPage={() => {}} />
         
         <main className="flex-1 overflow-auto p-6">
           <div className="flex items-center justify-between mb-6">
@@ -109,7 +108,7 @@ function CaseBattlesContent() {
           )}
         </main>
       </div>
-
+      
       <AuthModal
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}
