@@ -31,7 +31,10 @@ export async function getSession(): Promise<SessionPayload | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get('session')?.value
 
-  if (!token) return null
+  if (!token) {
+    console.log('No session token found in cookies')
+    return null
+  }
 
   try {
     const { payload } = await jwtVerify(token, SECRET_KEY)
@@ -41,6 +44,7 @@ export async function getSession(): Promise<SessionPayload | null> {
       balance: payload.balance as number,
     }
   } catch (error) {
+    console.error('Session verification failed:', error)
     return null
   }
 }
