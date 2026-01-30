@@ -77,7 +77,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   }, [currentRound])
 
   useEffect(() => {
-    if (battle && battle.players.length === battle.maxPlayers && battle.status === 'waiting') {
+    if (battle && battle.players.length === battle.max_players && battle.status === 'waiting') {
       handleStartBattle()
     }
   }, [battle?.players.length])
