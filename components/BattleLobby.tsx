@@ -300,7 +300,10 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
         const targetPosition = halfReelHeight - item15Center + containerCenter
         
         const newPositions = battle.players.map(() => {
-          return targetPosition
+          // Add variation: sometimes lands slightly before, sometimes slightly after
+          // Keep within ±35px so it stays on the correct item (item is 80px tall)
+          const variation = (Math.random() - 0.5) * 70 // Range: -35 to +35
+          return targetPosition + variation
         })
         setReelPositions(newPositions)
       }, 20)
