@@ -34,8 +34,8 @@ export default function CreateBattleModal({ isOpen, onClose, onBattleCreated }: 
     setSelectedCases([...selectedCases, ...cases])
   }
 
-  const handleRemoveCase = (caseId: string) => {
-    setSelectedCases(selectedCases.filter(c => c.id !== caseId))
+  const handleRemoveCase = (index: number) => {
+    setSelectedCases(selectedCases.filter((_, i) => i !== index))
   }
 
   const handleCreateBattle = async () => {
@@ -159,8 +159,8 @@ export default function CreateBattleModal({ isOpen, onClose, onBattleCreated }: 
                 ) : (
                   <div className="w-full">
                     <div className="grid grid-cols-6 gap-4 mb-4">
-                      {selectedCases.map((caseItem) => (
-                        <div key={caseItem.id} className="relative group">
+                      {selectedCases.map((caseItem, index) => (
+                        <div key={`${caseItem.id}-${index}`} className="relative group">
                           <div className="bg-empire-bg-lighter rounded-lg p-3">
                             <div className="aspect-square bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mb-2 flex items-center justify-center text-2xl">
                               📦
@@ -169,7 +169,7 @@ export default function CreateBattleModal({ isOpen, onClose, onBattleCreated }: 
                             <div className="text-xs text-center text-empire-gold">💰 {caseItem.price}</div>
                           </div>
                           <button
-                            onClick={() => handleRemoveCase(caseItem.id)}
+                            onClick={() => handleRemoveCase(index)}
                             className="absolute -top-2 -right-2 w-6 h-6 bg-red-600 rounded-full text-white text-sm opacity-0 group-hover:opacity-100 transition"
                           >
                             ×

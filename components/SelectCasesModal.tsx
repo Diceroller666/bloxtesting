@@ -47,11 +47,8 @@ export default function SelectCasesModal({ isOpen, onClose, onAddCases }: Select
   }
 
   const toggleCase = (caseItem: Case) => {
-    if (selectedCases.find(c => c.id === caseItem.id)) {
-      setSelectedCases(selectedCases.filter(c => c.id !== caseItem.id))
-    } else {
-      setSelectedCases([...selectedCases, caseItem])
-    }
+    // Always add the case - allow multiple of the same case
+    setSelectedCases([...selectedCases, caseItem])
   }
 
   const handleAddCases = () => {
@@ -123,17 +120,22 @@ export default function SelectCasesModal({ isOpen, onClose, onAddCases }: Select
               <div className="col-span-5 text-center py-12 text-gray-400">No cases found</div>
             ) : (
               filteredCases.map((caseItem) => {
-                const isSelected = selectedCases.find(c => c.id === caseItem.id)
+                const selectedCount = selectedCases.filter(c => c.id === caseItem.id).length
                 return (
                   <div
                     key={caseItem.id}
                     onClick={() => toggleCase(caseItem)}
-                    className={`cursor-pointer rounded-lg p-4 transition ${
-                      isSelected 
+                    className={`cursor-pointer rounded-lg p-4 transition relative ${
+                      selectedCount > 0
                         ? 'bg-empire-gold bg-opacity-20 border-2 border-empire-gold' 
                         : 'bg-empire-bg-lighter border-2 border-transparent hover:border-gray-600'
                     }`}
                   >
+                    {selectedCount > 0 && (
+                      <div className="absolute -top-2 -right-2 w-7 h-7 bg-empire-gold rounded-full flex items-center justify-center text-empire-bg font-bold text-sm">
+                        {selectedCount}
+                      </div>
+                    )}
                     <div className="aspect-square bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mb-3 flex items-center justify-center text-4xl">
                       📦
                     </div>

@@ -52,6 +52,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   // Use refs to track accumulated totals across all rounds (avoids stale closure issues)
   const playerTotalsRef = useRef<number[]>([])
   const allRoundResultsRef = useRef<any[][]>([])
+  const playerItemHistoryRef = useRef<any[][]>([]) // Track all items won by each player
 
   // Store interval ref so we can clear it when battle starts
   const fetchIntervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -71,6 +72,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     // Reset refs
     playerTotalsRef.current = []
     allRoundResultsRef.current = []
+    playerItemHistoryRef.current = []
     
     fetchBattle()
     // Only poll while waiting for players - will be cleared when battle starts
@@ -169,6 +171,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     // Initialize player totals ref if empty
     if (playerTotalsRef.current.length === 0) {
       playerTotalsRef.current = battle.players.map(() => 0)
+      playerItemHistoryRef.current = battle.players.map(() => [])
     }
     
     // Generate items for this round (one per player)
@@ -211,6 +214,8 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
       // Add this round's values to the accumulated totals in ref
       items.forEach((item, index) => {
         playerTotalsRef.current[index] += item.value
+        // Add item to player's history (newest at the front)
+        playerItemHistoryRef.current[index].unshift(item)
       })
       
       // Update battle state with new totals from ref
@@ -518,18 +523,27 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
             }`}>
               {battle.players.map((player, playerIndex) => (
                 <div key={playerIndex} className="bg-empire-bg-light p-4 border-t border-gray-800">
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
-                    <span>#{currentRound}</span>
-                    <span>{roundItems[playerIndex]?.dropRate || 0}%</span>
-                  </div>
+                  <div className="text-xs text-gray-400 mb-3 text-center">Unboxed Items</div>
                   
-                  <div className="flex flex-col items-center">
-                    <div className="w-24 h-16 flex items-center justify-center mb-2">
-                      <div className="text-5xl">🔫</div>
-                    </div>
-                    <div className="text-xs text-gray-500 mb-1">{roundItems[playerIndex]?.name || 'Item'}</div>
-                    <div className="text-sm font-semibold text-purple-400 mb-1">{roundItems[playerIndex]?.skin || 'Skin'}</div>
-                    <div className="text-empire-gold font-bold">💰 {(roundItems[playerIndex]?.value || 0).toFixed(2)}</div>
+                  <div className="flex flex-col gap-2 max-h-64 overflow-y-auto">
+                    {playerItemHistoryRef.current[playerIndex]?.map((item, itemIdx) => (
+                      <div key={itemIdx} className="bg-empire-bg rounded p-2 border border-gray-700">
+                        <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
+                          <span>#{currentRound - itemIdx}</span>
+                          <span>{item.dropRate}%</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="text-2xl">🔫</div>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-xs text-gray-500 truncate">{item.name}</div>
+                            <div className="text-xs font-semibold text-purple-400 truncate">{item.skin}</div>
+                            <div className="text-xs text-empire-gold font-bold">💰 {item.value.toFixed(2)}</div>
+                          </div>
+                        </div>
+                      </div>
+                    )) || (
+                      <div className="text-center text-gray-600 text-sm py-4">No items yet</div>
+                    )}
                   </div>
                 </div>
               ))}
