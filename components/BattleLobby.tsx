@@ -167,6 +167,23 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     }
   }
 
+  const handleJoinBattle = async () => {
+    if (!user) return
+    
+    try {
+      const response = await fetch(`/api/battles/${battleId}/join`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      const data = await response.json()
+      if (data.success) {
+        setBattle(data.battle)
+      }
+    } catch (error) {
+      console.error('Failed to join battle:', error)
+    }
+  }
+
   const handleStartBattle = async () => {
     try {
       await fetch(`/api/battles/${battleId}/start`, {
@@ -330,6 +347,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const totalCost = cases.reduce((sum, c) => sum + c.price, 0)
   const emptySlots = battle.max_players - battle.players.length
   const isCreator = battle.creator_id === user?.id
+  const isPlayerInBattle = battle.players.some(p => p.userId === user?.id)
 
   return (
     <div className="min-h-screen bg-empire-bg text-white p-6">
@@ -426,10 +444,24 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
               </div>
             )}
 
-            {!isCreator && (
+            {!isCreator && !isPlayerInBattle && emptySlots > 0 && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={handleJoinBattle}
+                  className="bg-empire-gold text-empire-bg px-8 py-3 rounded-lg font-semibold hover:bg-empire-gold-dark transition mb-3"
+                >
+                  Join Battle (💰 {totalCost.toFixed(2)})
+                </button>
+                <p className="text-sm text-gray-400">
+                  Battle will auto-start when all slots are filled
+                </p>
+              </div>
+            )}
+
+            {!isCreator && isPlayerInBattle && (
               <div className="mt-8 text-center">
                 <p className="text-gray-400">
-                  Waiting for the host to fill remaining slots or for other players to join...
+                  Waiting for other players to join...
                 </p>
               </div>
             )}
