@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface ChatMessage {
   id: number
@@ -11,7 +11,14 @@ interface ChatMessage {
 }
 
 export default function Sidebar() {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(() => {
+    // Read initial state from localStorage, default to true
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('chatVisible')
+      return saved !== null ? saved === 'true' : true
+    }
+    return true
+  })
   const [messages] = useState<ChatMessage[]>([
     { id: 1, username: 'Tuff palte', level: 48, message: 'EPSTEIN WHERE HAVE YOU BEEEEEEEEEEEEEEEEEEEEEEEEEE', avatar: '👤' },
     { id: 2, username: 'Utata', level: 56, message: 'kkkkkkkkkkkk', avatar: '👤' },
@@ -25,13 +32,22 @@ export default function Sidebar() {
     { id: 10, username: 'José Mourinho', level: 46, message: 'Pvnt better', avatar: '👤' },
   ])
 
+  // Save chat visibility to localStorage whenever it changes
+  const handleToggle = () => {
+    const newState = !isVisible
+    setIsVisible(newState)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('chatVisible', String(newState))
+    }
+  }
+
   return (
     <aside className={`bg-empire-bg-light border-r border-gray-800 flex flex-col transition-all duration-300 ease-in-out relative ${
       isVisible ? 'w-80' : 'w-12'
     }`}>
       {/* Hide/Show Toggle Button */}
       <button
-        onClick={() => setIsVisible(!isVisible)}
+        onClick={handleToggle}
         className="absolute -right-3 top-4 z-10 w-6 h-6 bg-empire-gold rounded-full flex items-center justify-center text-empire-bg hover:bg-empire-gold-dark transition shadow-lg"
         title={isVisible ? 'Hide Chat' : 'Show Chat'}
       >
