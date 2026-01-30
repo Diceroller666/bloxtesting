@@ -13,12 +13,12 @@ interface BattlePlayer {
 
 interface Battle {
   id: string
-  creatorId: string
+  creator_id: string
   mode: string
-  playerCount: string
+  player_count: string
   cases: any[]
   players: BattlePlayer[]
-  maxPlayers: number
+  max_players: number
   status: string
   settings: {
     empireSpin: boolean
