@@ -181,6 +181,13 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const startRound = () => {
     if (!battle) return
     
+    // Don't start if items haven't loaded yet
+    if (availableItems.length === 0) {
+      console.log('Waiting for items to load...')
+      setTimeout(() => startRound(), 500)
+      return
+    }
+    
     setIsSpinning(true)
     
     // Initialize player totals ref if empty
@@ -191,23 +198,13 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     
     // Generate items for this round (one per player)
     const items = battle.players.map(() => {
-      if (availableItems.length === 0) {
-        // Fallback if items haven't loaded yet
-        return {
-          name: 'M4A4',
-          skin: 'Desolate Space',
-          value: Math.random() * 15 + 0.05,
-          dropRate: (Math.random() * 40 + 5).toFixed(1)
-        }
-      }
-      
       // Select a random item from available items
       const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)]
       
       return {
         name: randomItem.weapon_type || randomItem.name,
-        skin: randomItem.skin_name || randomItem.name,
-        value: randomItem.price || Math.random() * 15 + 0.05,
+        skin: randomItem.skin || 'Default',
+        value: randomItem.value || 1.00,
         dropRate: (Math.random() * 40 + 5).toFixed(1),
         rarity: randomItem.rarity
       }
