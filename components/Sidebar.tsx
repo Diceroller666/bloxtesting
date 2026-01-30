@@ -11,6 +11,7 @@ interface ChatMessage {
 }
 
 export default function Sidebar() {
+  const [isVisible, setIsVisible] = useState(true)
   const [messages] = useState<ChatMessage[]>([
     { id: 1, username: 'Tuff palte', level: 48, message: 'EPSTEIN WHERE HAVE YOU BEEEEEEEEEEEEEEEEEEEEEEEEEE', avatar: '👤' },
     { id: 2, username: 'Utata', level: 56, message: 'kkkkkkkkkkkk', avatar: '👤' },
@@ -25,8 +26,21 @@ export default function Sidebar() {
   ])
 
   return (
-    <aside className="w-80 bg-empire-bg-light border-r border-gray-800 flex flex-col">
-      <div className="p-4 border-b border-gray-800">
+    <aside className={`bg-empire-bg-light border-r border-gray-800 flex flex-col transition-all duration-300 ease-in-out relative ${
+      isVisible ? 'w-80' : 'w-12'
+    }`}>
+      {/* Hide/Show Toggle Button */}
+      <button
+        onClick={() => setIsVisible(!isVisible)}
+        className="absolute -right-3 top-4 z-10 w-6 h-6 bg-empire-gold rounded-full flex items-center justify-center text-empire-bg hover:bg-empire-gold-dark transition shadow-lg"
+        title={isVisible ? 'Hide Chat' : 'Show Chat'}
+      >
+        <span className="text-xs font-bold">{isVisible ? '←' : '→'}</span>
+      </button>
+
+      <div className={`p-4 border-b border-gray-800 transition-opacity duration-300 ${
+        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}>
         <div className="flex items-center gap-2 mb-3">
           <span className="text-sm font-semibold">English</span>
           <span className="text-xs text-gray-400">▼</span>
@@ -38,7 +52,9 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto scrollbar-hide p-3 space-y-3">
+      <div className={`flex-1 overflow-y-auto scrollbar-hide p-3 space-y-3 transition-opacity duration-300 ${
+        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}>
         {messages.map((msg) => (
           <div key={msg.id} className="flex gap-2 text-sm">
             <div className="flex-shrink-0">
@@ -57,7 +73,9 @@ export default function Sidebar() {
         ))}
       </div>
 
-      <div className="p-3 border-t border-gray-800">
+      <div className={`p-3 border-t border-gray-800 transition-opacity duration-300 ${
+        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}>
         <div className="flex items-center gap-2">
           <input
             type="text"
