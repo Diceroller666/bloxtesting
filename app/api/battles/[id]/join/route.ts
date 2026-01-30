@@ -4,7 +4,7 @@ import { joinBattle } from '@/lib/supabase-battles'
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession()
@@ -13,6 +13,7 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
+    const params = await context.params
     const battleId = params.id
     const battle = await joinBattle(battleId, session.userId, session.username)
 
