@@ -53,6 +53,9 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const playerTotalsRef = useRef<number[]>([])
   const allRoundResultsRef = useRef<any[][]>([])
 
+  // Store interval ref so we can clear it when battle starts
+  const fetchIntervalRef = useRef<NodeJS.Timeout | null>(null)
+
   useEffect(() => {
     // Reset all states when battleId changes (new battle)
     setCurrentRound(1)
@@ -70,9 +73,22 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     allRoundResultsRef.current = []
     
     fetchBattle()
-    const interval = setInterval(fetchBattle, 2000)
-    return () => clearInterval(interval)
+    // Only poll while waiting for players - will be cleared when battle starts
+    fetchIntervalRef.current = setInterval(fetchBattle, 2000)
+    return () => {
+      if (fetchIntervalRef.current) {
+        clearInterval(fetchIntervalRef.current)
+      }
+    }
   }, [battleId])
+  
+  // Stop polling once battle has started (to prevent overwriting local totals)
+  useEffect(() => {
+    if (hasStartedBattle && fetchIntervalRef.current) {
+      clearInterval(fetchIntervalRef.current)
+      fetchIntervalRef.current = null
+    }
+  }, [hasStartedBattle])
 
   useEffect(() => {
     if (battle?.status === 'in_progress' && !hasStartedBattle) {
