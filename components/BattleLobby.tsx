@@ -131,7 +131,10 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     try {
       const response = await fetch('/api/cases')
       const data = await response.json()
-      const selectedCases = data.cases.filter((c: any) => caseIds.includes(c.id))
+      // Map each case ID to its case object (preserves duplicates)
+      const selectedCases = caseIds.map(id => 
+        data.cases.find((c: any) => c.id === id)
+      ).filter(Boolean) // Remove any undefined values
       setCases(selectedCases)
     } catch (error) {
       console.error('Failed to fetch cases:', error)
