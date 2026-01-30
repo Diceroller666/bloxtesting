@@ -347,7 +347,8 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const totalCost = cases.reduce((sum, c) => sum + c.price, 0)
   const emptySlots = battle.max_players - battle.players.length
   const isCreator = battle.creator_id === user?.id
-  const isPlayerInBattle = battle.players.some(p => p.userId === user?.id)
+  const isPlayerInBattle = user ? battle.players.some(p => p.userId === user.id) : false
+  const canJoin = emptySlots > 0 && !isPlayerInBattle && user !== null
 
   return (
     <div className="min-h-screen bg-empire-bg text-white p-6">
@@ -427,7 +428,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                   <div className="text-gray-500 font-semibold">Waiting...</div>
                   <div className="text-sm text-gray-600 mb-2">Empty Slot</div>
                   
-                  {!isCreator && !isPlayerInBattle && index === 0 && (
+                  {index === 0 && canJoin && (
                     <button
                       onClick={handleJoinBattle}
                       className="bg-empire-gold text-empire-bg px-4 py-2 rounded-lg font-semibold hover:bg-empire-gold-dark transition text-sm mt-2"
@@ -454,7 +455,27 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                 </>
               )}
 
-              {!isCreator && isPlayerInBattle && (
+              {canJoin && (
+                <>
+                  <button
+                    onClick={handleJoinBattle}
+                    className="bg-empire-gold text-empire-bg px-8 py-3 rounded-lg font-semibold hover:bg-empire-gold-dark transition"
+                  >
+                    Join Battle (💰 {totalCost.toFixed(2)})
+                  </button>
+                  <p className="text-sm text-gray-400 mt-2">
+                    Click to join this battle
+                  </p>
+                </>
+              )}
+
+              {!user && emptySlots > 0 && (
+                <p className="text-gray-400">
+                  Log in to join this battle
+                </p>
+              )}
+
+              {isPlayerInBattle && !isCreator && (
                 <p className="text-gray-400">
                   Waiting for other players to join...
                 </p>
