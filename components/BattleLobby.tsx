@@ -194,8 +194,8 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   }
 
   const totalCost = cases.reduce((sum, c) => sum + c.price, 0)
-  const emptySlots = battle.maxPlayers - battle.players.length
-  const isCreator = battle.players[0]?.userId === user?.id
+  const emptySlots = battle.max_players - battle.players.length
+  const isCreator = battle.creator_id === user?.id
 
   return (
     <div className="min-h-screen bg-empire-bg text-white p-6">
