@@ -277,19 +277,30 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
         const itemDisplayHeight = 80 // h-20 in pixels
         const winningItemIndex = 15 // The winning item is at index 15 in the repeated pattern
         const containerHeight = 320 // h-80 in pixels
+        const totalItems = 90
         
-        // Calculate position: we want the CENTER of item 15 to align with the CENTER of the container
-        // Item 15 top edge is at: winningItemIndex * itemHeight
-        // Item 15 center is at: (winningItemIndex * itemHeight) + (itemDisplayHeight / 2)
-        // Container center is at: containerHeight / 2
-        // The reel starts with -50% offset (centers the entire reel)
-        // We need to scroll so item 15's center aligns with container center
-        const itemCenterPosition = (winningItemIndex * itemHeight) + (itemDisplayHeight / 2)
+        // The reel has py-2 (8px) padding at top
+        const reelPaddingTop = 8
+        
+        // Calculate reel height: items + gaps + padding
+        // Items: 90 * 80px = 7200px, Gaps: 89 * 8px = 712px, Padding: 16px
+        const reelHeight = (totalItems * itemDisplayHeight) + ((totalItems - 1) * 8) + 16
+        const halfReelHeight = reelHeight / 2
+        
+        // Item 15 position from reel top (including padding)
+        const item15Top = reelPaddingTop + (winningItemIndex * itemHeight)
+        const item15Center = item15Top + (itemDisplayHeight / 2)
         const containerCenter = containerHeight / 2
-        const targetScroll = itemCenterPosition - containerCenter
+        
+        // After -50% transform, reel top is at -halfReelHeight
+        // Item 15 center is at: -halfReelHeight + item15Center
+        // We want this to equal containerCenter
+        // So: -halfReelHeight + item15Center + reelPosition = containerCenter
+        // reelPosition = containerCenter + halfReelHeight - item15Center
+        const targetPosition = halfReelHeight - item15Center + containerCenter
         
         const newPositions = battle.players.map(() => {
-          return -targetScroll // Scroll to exact final position (no random offset)
+          return targetPosition
         })
         setReelPositions(newPositions)
       }, 20)
