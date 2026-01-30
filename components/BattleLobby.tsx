@@ -551,8 +551,9 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                           if (isWinningItem && roundItems[playerIndex]) {
                             displayEmoji = getItemEmoji(roundItems[playerIndex].category)
                           } else if (availableItems.length > 0) {
-                            // Show random item emoji for non-winning slots
-                            const randomItem = availableItems[itemIndex % availableItems.length]
+                            // Show truly random item emoji for non-winning slots
+                            const randomIndex = Math.floor(Math.random() * availableItems.length)
+                            const randomItem = availableItems[randomIndex]
                             displayEmoji = getItemEmoji(randomItem.category)
                           }
                           
