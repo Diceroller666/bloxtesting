@@ -49,29 +49,44 @@ const seedCases = [
   }
 ]
 
+async function seedCasesData() {
+  const results = []
+  
+  for (const caseData of seedCases) {
+    const { data, error } = await supabase
+      .from('cases')
+      .upsert(caseData, { onConflict: 'id' })
+      .select()
+    
+    if (error) {
+      console.error(`Error seeding case ${caseData.name}:`, error)
+    } else {
+      results.push(data)
+    }
+  }
+  
+  return {
+    success: true, 
+    message: `Seeded ${seedCases.length} cases to Supabase`,
+    count: seedCases.length,
+    cases: results
+  }
+}
+
+export async function GET() {
+  try {
+    const result = await seedCasesData()
+    return NextResponse.json(result)
+  } catch (error) {
+    console.error('Error seeding cases:', error)
+    return NextResponse.json({ error: 'Failed to seed cases' }, { status: 500 })
+  }
+}
+
 export async function POST() {
   try {
-    const results = []
-    
-    for (const caseData of seedCases) {
-      const { data, error } = await supabase
-        .from('cases')
-        .upsert(caseData, { onConflict: 'id' })
-        .select()
-      
-      if (error) {
-        console.error(`Error seeding case ${caseData.name}:`, error)
-      } else {
-        results.push(data)
-      }
-    }
-    
-    return NextResponse.json({ 
-      success: true, 
-      message: `Seeded ${seedCases.length} cases to Supabase`,
-      count: seedCases.length,
-      cases: results
-    })
+    const result = await seedCasesData()
+    return NextResponse.json(result)
   } catch (error) {
     console.error('Error seeding cases:', error)
     return NextResponse.json({ error: 'Failed to seed cases' }, { status: 500 })
