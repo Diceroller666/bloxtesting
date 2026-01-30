@@ -31,11 +31,77 @@ export const bloxStrikeItems = [
   { id: 'butterfly_violet', name: 'Butterfly Knife', skin: 'Violet', category: 'knife', weapon_type: 'Butterfly Knife', rarity: 'legendary', value: 280.00 },
   { id: 'butterfly_scarlet', name: 'Butterfly Knife', skin: 'Scarlet', category: 'knife', weapon_type: 'Butterfly Knife', rarity: 'legendary', value: 300.00 },
 
-  // GUT KNIFE SKINS (assuming 4 basic skins)
+  // GUT KNIFE SKINS (10 skins from images 1-2)
   { id: 'gut_vanilla', name: 'Gut Knife', skin: 'Vanilla', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 85.00 },
   { id: 'gut_fade', name: 'Gut Knife', skin: 'Fade', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 165.00 },
-  { id: 'gut_midnight', name: 'Gut Knife', skin: 'Midnight', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 95.00 },
-  { id: 'gut_scarlet', name: 'Gut Knife', skin: 'Scarlet', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 105.00 },
+  { id: 'gut_woodland', name: 'Gut Knife', skin: 'Woodland', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 95.00 },
+  { id: 'gut_naval', name: 'Gut Knife', skin: 'Naval', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 105.00 },
+  { id: 'gut_whiteout', name: 'Gut Knife', skin: 'Whiteout', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 90.00 },
+  { id: 'gut_safari', name: 'Gut Knife', skin: 'Safari', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 88.00 },
+  { id: 'gut_violet', name: 'Gut Knife', skin: 'Violet', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 115.00 },
+  { id: 'gut_midnight', name: 'Gut Knife', skin: 'Midnight', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 110.00 },
+  { id: 'gut_blackwidow', name: 'Gut Knife', skin: 'Blackwidow', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 145.00 },
+  { id: 'gut_scarlet', name: 'Gut Knife', skin: 'Scarlet', category: 'knife', weapon_type: 'Gut Knife', rarity: 'epic', value: 125.00 },
+
+  // DAGGER SKINS (middle weapon in images 1-2, 10 skins)
+  { id: 'dagger_vanilla', name: 'Dagger', skin: 'Vanilla', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 95.00 },
+  { id: 'dagger_fade', name: 'Dagger', skin: 'Fade', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 285.00 },
+  { id: 'dagger_woodland', name: 'Dagger', skin: 'Woodland', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 115.00 },
+  { id: 'dagger_naval', name: 'Dagger', skin: 'Naval', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 125.00 },
+  { id: 'dagger_whiteout', name: 'Dagger', skin: 'Whiteout', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 105.00 },
+  { id: 'dagger_safari', name: 'Dagger', skin: 'Safari', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 100.00 },
+  { id: 'dagger_violet', name: 'Dagger', skin: 'Violet', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 145.00 },
+  { id: 'dagger_midnight', name: 'Dagger', skin: 'Midnight', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 135.00 },
+  { id: 'dagger_blackwidow', name: 'Dagger', skin: 'Blackwidow', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 175.00 },
+  { id: 'dagger_scarlet', name: 'Dagger', skin: 'Scarlet', category: 'knife', weapon_type: 'Dagger', rarity: 'epic', value: 155.00 },
+
+  // FLORA COLLECTION GUNS (14 items)
+  { id: 'm4a1s_orchids', name: 'M4A1-S', skin: 'Orchids', category: 'gun', weapon_type: 'Rifle', rarity: 'rare', value: 8.50 },
+  { id: 'm4a4_bhop', name: 'M4A4', skin: 'B-Hop', category: 'gun', weapon_type: 'Rifle', rarity: 'rare', value: 9.25 },
+  { id: 'glock18_fuji', name: 'Glock-18', skin: 'Fuji', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 4.75 },
+  { id: 'galil_monochrome', name: 'Galil', skin: 'Monochrome', category: 'gun', weapon_type: 'Rifle', rarity: 'uncommon', value: 5.20 },
+  { id: 'sg553_dynasty', name: 'SG-553', skin: 'Dynasty', category: 'gun', weapon_type: 'Rifle', rarity: 'uncommon', value: 5.50 },
+  { id: 'p250_b250', name: 'P250', skin: 'B-250', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 4.25 },
+  { id: 'dualberettas_vernal', name: 'Dual Berettas', skin: 'Vernal', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 3.95 },
+  { id: 'ssg08_labyrinth', name: 'SSG-08', skin: 'Labyrinth', category: 'gun', weapon_type: 'Sniper', rarity: 'rare', value: 7.80 },
+  { id: 'mac10_daisies', name: 'MAC-10', skin: 'Daisies', category: 'gun', weapon_type: 'SMG', rarity: 'uncommon', value: 4.50 },
+  { id: 'tec9_monarch', name: 'Tec-9', skin: 'Monarch', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 4.80 },
+  { id: 'negev_noctiflora', name: 'Negev', skin: 'Noctiflora', category: 'gun', weapon_type: 'Heavy', rarity: 'rare', value: 6.75 },
+  { id: 'aug_overgrowth', name: 'AUG', skin: 'Overgrowth', category: 'gun', weapon_type: 'Rifle', rarity: 'rare', value: 7.25 },
+  { id: 'xm1014_lilies', name: 'XM1014', skin: 'Lilies', category: 'gun', weapon_type: 'Shotgun', rarity: 'uncommon', value: 5.60 },
+  { id: 'nova_flutter', name: 'Nova', skin: 'Flutter', category: 'gun', weapon_type: 'Shotgun', rarity: 'uncommon', value: 4.90 },
+
+  // WINTER COLLECTION GUNS (14 items)
+  { id: 'famas_heirloom', name: 'FAMAS', skin: 'Heirloom', category: 'gun', weapon_type: 'Rifle', rarity: 'rare', value: 8.75 },
+  { id: 'awp_metamorphosis', name: 'AWP', skin: 'Metamorphosis', category: 'gun', weapon_type: 'Sniper', rarity: 'legendary', value: 45.00 },
+  { id: 'glock18_aurora', name: 'Glock-18', skin: 'Aurora', category: 'gun', weapon_type: 'Pistol', rarity: 'rare', value: 6.50 },
+  { id: 'usps_wintergreen', name: 'USP-S', skin: 'WinterGreen', category: 'gun', weapon_type: 'Pistol', rarity: 'rare', value: 7.20 },
+  { id: 'mp9_xray', name: 'MP9', skin: 'X-Ray', category: 'gun', weapon_type: 'SMG', rarity: 'uncommon', value: 5.10 },
+  { id: 'dualberettas_choking', name: 'Dual Berettas', skin: 'Choking Hazard', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 4.60 },
+  { id: 'deagle_permafrost', name: 'Desert Eagle', skin: 'Permafrost', category: 'gun', weapon_type: 'Pistol', rarity: 'rare', value: 9.50 },
+  { id: 'negev_frostbloom', name: 'Negev', skin: 'Frostbloom', category: 'gun', weapon_type: 'Heavy', rarity: 'rare', value: 7.80 },
+  { id: 'mac10_airmail', name: 'MAC-10', skin: 'Air Mail', category: 'gun', weapon_type: 'SMG', rarity: 'uncommon', value: 4.95 },
+  { id: 'fiveseven_icecap', name: 'Five-SeveN', skin: 'Icecap', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 5.25 },
+  { id: 'nova_arcticstripe', name: 'Nova', skin: 'Arctic Stripe', category: 'gun', weapon_type: 'Shotgun', rarity: 'uncommon', value: 4.40 },
+  { id: 'p250_glacial', name: 'P250', skin: 'Glacial', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 4.85 },
+  { id: 'sg553_frostline', name: 'SG-553', skin: 'Frostline', category: 'gun', weapon_type: 'Rifle', rarity: 'uncommon', value: 5.75 },
+  { id: 'm4a4_wrapped', name: 'M4A4', skin: 'Wrapped', category: 'gun', weapon_type: 'Rifle', rarity: 'rare', value: 8.90 },
+
+  // SAKURA COLLECTION GUNS (14 items)
+  { id: 'm4a1s_retro', name: 'M4A1-S', skin: 'Retro', category: 'gun', weapon_type: 'Rifle', rarity: 'rare', value: 9.75 },
+  { id: 'ak47_sakura', name: 'AK-47', skin: 'Sakura', category: 'gun', weapon_type: 'Rifle', rarity: 'legendary', value: 35.00 },
+  { id: 'awp_typhon', name: 'AWP', skin: 'Typhon', category: 'gun', weapon_type: 'Sniper', rarity: 'legendary', value: 42.50 },
+  { id: 'deagle_mercy', name: 'Desert Eagle', skin: 'Mercy', category: 'gun', weapon_type: 'Pistol', rarity: 'rare', value: 11.25 },
+  { id: 'glock18_fade', name: 'Glock-18', skin: 'Fade', category: 'gun', weapon_type: 'Pistol', rarity: 'epic', value: 18.50 },
+  { id: 'aug_hotrod', name: 'AUG', skin: 'Hot Rod', category: 'gun', weapon_type: 'Rifle', rarity: 'rare', value: 10.20 },
+  { id: 'xm1014_abstract', name: 'XM1014', skin: 'Abstract', category: 'gun', weapon_type: 'Shotgun', rarity: 'uncommon', value: 6.30 },
+  { id: 'tec9_striker', name: 'TEC-9', skin: 'Striker', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 5.40 },
+  { id: 'p250_pulse', name: 'P250', skin: 'Pulse', category: 'gun', weapon_type: 'Pistol', rarity: 'uncommon', value: 5.65 },
+  { id: 'p90_bigcat', name: 'P90', skin: 'Big Cat', category: 'gun', weapon_type: 'SMG', rarity: 'rare', value: 8.20 },
+  { id: 'famas_arcticcamo', name: 'FAMAS', skin: 'Arctic Camo', category: 'gun', weapon_type: 'Rifle', rarity: 'uncommon', value: 4.70 },
+  { id: 'nova_heat', name: 'Nova', skin: 'Heat', category: 'gun', weapon_type: 'Shotgun', rarity: 'uncommon', value: 5.15 },
+  { id: 'ssg08_desertstrike', name: 'SSG-08', skin: 'Desert Strike', category: 'gun', weapon_type: 'Sniper', rarity: 'uncommon', value: 6.85 },
+  { id: 'galil_irradiated', name: 'Galil', skin: 'Irradiated', category: 'gun', weapon_type: 'Rifle', rarity: 'uncommon', value: 5.95 },
 
   // KEYCHAINS (17 items from image 5)
   { id: 'keychain_relic', name: 'Keychain', skin: 'Relic', category: 'keychain', weapon_type: null, rarity: 'rare', value: 3.50 },
@@ -57,4 +123,4 @@ export const bloxStrikeItems = [
   { id: 'keychain_flighttag', name: 'Keychain', skin: 'Flight Tag', category: 'keychain', weapon_type: null, rarity: 'common', value: 1.65 }
 ]
 
-export const itemsCount = bloxStrikeItems.length // 47 total items
+export const itemsCount = bloxStrikeItems.length // Total items
