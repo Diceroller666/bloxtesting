@@ -3,42 +3,49 @@ import { supabase } from '@/lib/supabase'
 
 const seedCases = [
   {
-    id: 'case_seed_1_majesty',
+    id: 'case_majesty',
     name: 'Majesty',
     price: 12.50,
     items: [
-      { itemId: 'item_1', dropRate: 30 },
-      { itemId: 'item_2', dropRate: 25 },
-      { itemId: 'item_3', dropRate: 20 },
-      { itemId: 'item_4', dropRate: 15 },
-      { itemId: 'item_5', dropRate: 10 }
+      { itemId: 'karambit_fade', dropRate: 5 },
+      { itemId: 'butterfly_fade', dropRate: 3 },
+      { itemId: 'karambit_blackwidow', dropRate: 8 },
+      { itemId: 'flip_aurora', dropRate: 12 },
+      { itemId: 'karambit_scarlet', dropRate: 10 },
+      { itemId: 'keychain_gamebuddy', dropRate: 25 },
+      { itemId: 'keychain_capstone', dropRate: 20 },
+      { itemId: 'keychain_treat', dropRate: 17 }
     ],
-    description: 'Royal collection of premium items'
+    description: 'Royal collection of premium knives and rare items'
   },
   {
-    id: 'case_seed_2_bishop',
+    id: 'case_bishop',
     name: 'Bishop',
     price: 8.75,
     items: [
-      { itemId: 'item_6', dropRate: 35 },
-      { itemId: 'item_7', dropRate: 30 },
-      { itemId: 'item_8', dropRate: 20 },
-      { itemId: 'item_9', dropRate: 15 }
+      { itemId: 'flip_frostbite', dropRate: 15 },
+      { itemId: 'flip_midnight', dropRate: 12 },
+      { itemId: 'gut_fade', dropRate: 18 },
+      { itemId: 'karambit_vanilla', dropRate: 10 },
+      { itemId: 'keychain_relic', dropRate: 20 },
+      { itemId: 'keychain_8bitheart', dropRate: 25 }
     ],
-    description: 'Strategic selection of quality items'
+    description: 'Strategic selection of quality knives'
   },
   {
-    id: 'case_seed_3_stronghold',
+    id: 'case_stronghold',
     name: 'Stronghold',
     price: 15.00,
     items: [
-      { itemId: 'item_10', dropRate: 25 },
-      { itemId: 'item_11', dropRate: 25 },
-      { itemId: 'item_12', dropRate: 20 },
-      { itemId: 'item_13', dropRate: 15 },
-      { itemId: 'item_14', dropRate: 15 }
+      { itemId: 'butterfly_blackwidow', dropRate: 5 },
+      { itemId: 'butterfly_midnight', dropRate: 8 },
+      { itemId: 'karambit_naval', dropRate: 10 },
+      { itemId: 'butterfly_woodland', dropRate: 12 },
+      { itemId: 'flip_noir', dropRate: 15 },
+      { itemId: 'keychain_billiardball', dropRate: 25 },
+      { itemId: 'keychain_southpaw', dropRate: 25 }
     ],
-    description: 'Fortified collection of rare items'
+    description: 'Fortified collection of rare butterfly and karambit knives'
   }
 ]
 
