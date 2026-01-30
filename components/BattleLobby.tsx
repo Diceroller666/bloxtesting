@@ -176,7 +176,10 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
         ...player,
         totalUnboxed: player.totalUnboxed + items[index].value
       }))
-      setBattle({ ...battle, players: updatedPlayers })
+      
+      // Update battle state with new totals
+      const updatedBattle = { ...battle, players: updatedPlayers }
+      setBattle(updatedBattle)
       
       if (currentRound < (cases.length || 3)) {
         setTimeout(() => {
@@ -189,13 +192,14 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
             player.totalUnboxed > max.totalUnboxed ? player : max
           )
           
-          const total = updatedPlayers.reduce((sum, p) => sum + p.totalUnboxed, 0)
+          // Total pot is sum of all players' winnings
+          const totalPot = updatedPlayers.reduce((sum, p) => sum + p.totalUnboxed, 0)
           
           setWinner(winningPlayer)
-          setTotalWinnings(total)
+          setTotalWinnings(totalPot)
           setBattleComplete(true)
           
-          // Award balance to winner
+          // Award the entire pot to the winner
           if (!isUpdatingBalance && !winningPlayer.isBot) {
             setIsUpdatingBalance(true)
             try {
@@ -204,7 +208,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   userId: winningPlayer.userId,
-                  amount: total
+                  amount: totalPot
                 })
               })
             } catch (error) {
