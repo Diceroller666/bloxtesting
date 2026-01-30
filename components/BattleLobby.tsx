@@ -224,7 +224,8 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
         skin: randomItem.skin || 'Default',
         value: randomItem.value || 1.00,
         dropRate: (Math.random() * 40 + 5).toFixed(1),
-        rarity: randomItem.rarity
+        rarity: randomItem.rarity,
+        category: randomItem.category
       }
     })
     setRoundItems(items)
@@ -349,6 +350,17 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const emptySlots = battle.max_players - battle.players.length
   const isCreator = battle.creator_id === user?.id
   const isPlayerInBattle = battle.players.some(p => p.userId === user?.id)
+
+  // Get emoji based on item category
+  const getItemEmoji = (category: string) => {
+    switch (category) {
+      case 'knife': return '🔪'
+      case 'keychain': return '🔗'
+      case 'gun': return '🔫'
+      case 'glove': return '🧤'
+      default: return '🔫'
+    }
+  }
 
   return (
     <div className="min-h-screen bg-empire-bg text-white p-6">
@@ -540,7 +552,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                                 isWinningItem ? 'bg-empire-bg-lighter' : 'bg-empire-bg-light'
                               }`}
                             >
-                              <div className="text-4xl">🔫</div>
+                              <div className="text-4xl">{roundItems[playerIndex] ? getItemEmoji(roundItems[playerIndex].category) : '🔫'}</div>
                             </div>
                           )
                         })}
@@ -598,7 +610,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                           <span>{item.dropRate}%</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <div className="text-2xl">🔫</div>
+                          <div className="text-2xl">{getItemEmoji(item.category)}</div>
                           <div className="flex-1 min-w-0">
                             <div className="text-xs text-gray-500 truncate">{item.name}</div>
                             <div className="text-xs font-semibold text-purple-400 truncate">{item.skin}</div>
