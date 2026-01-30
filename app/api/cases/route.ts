@@ -1,27 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAllCases, addCase } from '@/lib/cases-db'
-import { getItemById } from '@/lib/items-db'
+import { getAllCases, addCase } from '@/lib/supabase-cases'
 
 export async function GET() {
   try {
-    const cases = getAllCases()
-    
-    const casesWithItems = cases.map(caseData => {
-      const itemsWithDetails = caseData.items.map(caseItem => {
-        const itemDetails = getItemById(caseItem.itemId)
-        return {
-          ...caseItem,
-          item: itemDetails
-        }
-      })
-      
-      return {
-        ...caseData,
-        items: itemsWithDetails
-      }
-    })
-
-    return NextResponse.json({ cases: casesWithItems, count: casesWithItems.length })
+    const cases = await getAllCases()
+    return NextResponse.json({ cases, count: cases.length })
   } catch (error) {
     console.error('Error fetching cases:', error)
     return NextResponse.json({ error: 'Failed to fetch cases' }, { status: 500 })

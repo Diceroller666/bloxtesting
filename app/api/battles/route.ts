@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
-import { createBattle, getAllBattles, getActiveBattles, joinBattle } from '@/lib/battles-db'
+import { createBattle, getActiveBattles } from '@/lib/supabase-battles'
 
 export async function GET() {
   try {
-    const battles = getActiveBattles()
+    const battles = await getActiveBattles()
     return NextResponse.json({ battles, count: battles.length })
   } catch (error) {
     console.error('Error fetching battles:', error)
@@ -39,23 +39,23 @@ export async function POST(request: NextRequest) {
       '2v2': 4
     }
 
-    const battle = createBattle({
+    const maxPlayers = maxPlayersMap[playerCount] || parseInt(playerCount)
+
+    const battle = await createBattle({
       creatorId: session.userId,
       mode,
       playerCount,
       cases,
-      maxPlayers: maxPlayersMap[playerCount] || 2,
-      settings: settings || {
-        empireSpin: true,
-        fastMode: false,
-        reverseMode: false,
-        privateMode: false
-      }
+      maxPlayers,
+      settings,
+      creatorUsername: session.username
     })
 
-    const updatedBattle = joinBattle(battle.id, session.userId, session.username)
+    if (!battle) {
+      return NextResponse.json({ error: 'Failed to create battle' }, { status: 500 })
+    }
 
-    return NextResponse.json({ battle: updatedBattle, success: true }, { status: 201 })
+    return NextResponse.json({ success: true, battle })
   } catch (error) {
     console.error('Error creating battle:', error)
     return NextResponse.json({ error: 'Failed to create battle' }, { status: 500 })

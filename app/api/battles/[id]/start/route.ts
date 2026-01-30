@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
-import { startBattle, getBattleById } from '@/lib/battles-db'
+import { startBattle, getBattleById } from '@/lib/supabase-battles'
 
 export async function POST(
   request: NextRequest,
@@ -14,19 +14,27 @@ export async function POST(
     }
 
     const { id } = await params
-    const battle = getBattleById(id)
-
+    const battle = await getBattleById(id)
+    
     if (!battle) {
       return NextResponse.json({ error: 'Battle not found' }, { status: 404 })
     }
 
-    const updatedBattle = startBattle(id)
-
-    if (!updatedBattle) {
-      return NextResponse.json({ error: 'Cannot start battle' }, { status: 400 })
+    if (battle.creator_id !== session.userId) {
+      return NextResponse.json({ error: 'Only the creator can start the battle' }, { status: 403 })
     }
 
-    return NextResponse.json({ battle: updatedBattle, success: true })
+    if (battle.status !== 'waiting') {
+      return NextResponse.json({ error: 'Battle already started' }, { status: 400 })
+    }
+
+    const updatedBattle = await startBattle(id)
+    
+    if (!updatedBattle) {
+      return NextResponse.json({ error: 'Failed to start battle' }, { status: 500 })
+    }
+
+    return NextResponse.json({ success: true, battle: updatedBattle })
   } catch (error) {
     console.error('Error starting battle:', error)
     return NextResponse.json({ error: 'Failed to start battle' }, { status: 500 })

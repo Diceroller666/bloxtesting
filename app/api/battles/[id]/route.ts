@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
-import { getBattleById, joinBattle } from '@/lib/battles-db'
+import { getBattleById, joinBattle } from '@/lib/supabase-battles'
 
 export async function GET(
   request: NextRequest,
@@ -8,7 +8,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params
-    const battle = getBattleById(id)
+    const battle = await getBattleById(id)
 
     if (!battle) {
       return NextResponse.json({ error: 'Battle not found' }, { status: 404 })
@@ -33,13 +33,27 @@ export async function POST(
     }
 
     const { id } = await params
-    const updatedBattle = joinBattle(id, session.userId, session.username)
-
-    if (!updatedBattle) {
-      return NextResponse.json({ error: 'Cannot join battle' }, { status: 400 })
+    const battle = await getBattleById(id)
+    
+    if (!battle) {
+      return NextResponse.json({ error: 'Battle not found' }, { status: 404 })
     }
 
-    return NextResponse.json({ battle: updatedBattle, success: true })
+    if (battle.status !== 'waiting') {
+      return NextResponse.json({ error: 'Battle already started' }, { status: 400 })
+    }
+
+    if (battle.players.length >= battle.max_players) {
+      return NextResponse.json({ error: 'Battle is full' }, { status: 400 })
+    }
+
+    const updatedBattle = await joinBattle(id, session.userId, session.username)
+    
+    if (!updatedBattle) {
+      return NextResponse.json({ error: 'Failed to join battle' }, { status: 500 })
+    }
+
+    return NextResponse.json({ success: true, battle: updatedBattle })
   } catch (error) {
     console.error('Error joining battle:', error)
     return NextResponse.json({ error: 'Failed to join battle' }, { status: 500 })
