@@ -545,6 +545,17 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                         {Array.from({ length: 90 }).map((_, itemIndex) => {
                           const repeatedIndex = itemIndex % 30
                           const isWinningItem = repeatedIndex === 15
+                          
+                          // For winning item, show the actual item. For others, show random items
+                          let displayEmoji = '🔫'
+                          if (isWinningItem && roundItems[playerIndex]) {
+                            displayEmoji = getItemEmoji(roundItems[playerIndex].category)
+                          } else if (availableItems.length > 0) {
+                            // Show random item emoji for non-winning slots
+                            const randomItem = availableItems[itemIndex % availableItems.length]
+                            displayEmoji = getItemEmoji(randomItem.category)
+                          }
+                          
                           return (
                             <div
                               key={itemIndex}
@@ -552,7 +563,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                                 isWinningItem ? 'bg-empire-bg-lighter' : 'bg-empire-bg-light'
                               }`}
                             >
-                              <div className="text-4xl">{roundItems[playerIndex] ? getItemEmoji(roundItems[playerIndex].category) : '🔫'}</div>
+                              <div className="text-4xl">{displayEmoji}</div>
                             </div>
                           )
                         })}
