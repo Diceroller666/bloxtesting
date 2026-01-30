@@ -123,39 +123,6 @@ export async function joinBattle(battleId: string, userId: string, username: str
   if (!battle) return null
   if (battle.players.length >= battle.max_players) return null
   if (battle.status !== 'waiting') return null
-
-  const updatedPlayers = [
-    ...battle.players,
-    {
-      userId,
-      username,
-      isBot: false,
-      totalUnboxed: 0,
-      items: []
-    }
-  ]
-
-  const { data, error } = await supabase
-    .from('battles')
-    .update({ players: updatedPlayers })
-    .eq('id', battleId)
-    .select()
-    .single()
-
-  if (error) {
-    console.error('Error joining battle:', error)
-    return null
-  }
-
-  return data
-}
-
-export async function joinBattle(battleId: string, userId: string, username: string): Promise<Battle | null> {
-  const battle = await getBattleById(battleId)
-  
-  if (!battle) return null
-  if (battle.players.length >= battle.max_players) return null
-  if (battle.status !== 'waiting') return null
   
   // Check if player is already in the battle
   if (battle.players.some(p => p.userId === userId)) {
