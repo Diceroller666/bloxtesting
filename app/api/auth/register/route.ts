@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import bcrypt from 'bcryptjs'
-import { createUser, findUserByUsername } from '@/lib/db'
+import { createUser, findUserByUsername, findUserByEmail } from '@/lib/supabase-db'
 import { createSession } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
-    const { username, password } = await request.json()
+    const { username, email, password } = await request.json()
 
     if (!username || !password) {
       return NextResponse.json(
-        { error: 'Username and password are required' },
+        { error: 'Username, email, and password are required' },
         { status: 400 }
       )
     }
@@ -28,7 +27,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const existingUser = findUserByUsername(username)
+    const existingUser = await findUserByUsername(username)
     if (existingUser) {
       return NextResponse.json(
         { error: 'Username already exists' },
@@ -36,13 +35,27 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10)
-    const user = createUser(username, hashedPassword)
+    const existingEmail = await findUserByEmail(email)
+    if (existingEmail) {
+      return NextResponse.json(
+        { error: 'Email already exists' },
+        { status: 400 }
+      )
+    }
+
+    const user = await createUser(username, email, password)
+    
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Failed to create user' },
+        { status: 500 }
+      )
+    }
 
     await createSession({
       userId: user.id,
       username: user.username,
-      balance: user.balance,
+      balance: user.balance
     })
 
     return NextResponse.json({
@@ -50,8 +63,8 @@ export async function POST(request: NextRequest) {
       user: {
         id: user.id,
         username: user.username,
-        balance: user.balance,
-      },
+        balance: user.balance
+      }
     })
   } catch (error) {
     console.error('Registration error:', error)

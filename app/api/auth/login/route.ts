@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import bcrypt from 'bcryptjs'
-import { findUserByUsername } from '@/lib/db'
+import { findUserByUsername, verifyPassword } from '@/lib/supabase-db'
 import { createSession } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
@@ -14,18 +13,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const user = findUserByUsername(username)
+    const user = await findUserByUsername(username)
     if (!user) {
       return NextResponse.json(
-        { error: 'Invalid username or password' },
+        { error: 'Invalid credentials' },
         { status: 401 }
       )
     }
 
-    const isValidPassword = await bcrypt.compare(password, user.password)
+    const isValidPassword = await verifyPassword(user, password)
     if (!isValidPassword) {
       return NextResponse.json(
-        { error: 'Invalid username or password' },
+        { error: 'Invalid credentials' },
         { status: 401 }
       )
     }
@@ -33,7 +32,7 @@ export async function POST(request: NextRequest) {
     await createSession({
       userId: user.id,
       username: user.username,
-      balance: user.balance,
+      balance: user.balance
     })
 
     return NextResponse.json({
@@ -41,8 +40,8 @@ export async function POST(request: NextRequest) {
       user: {
         id: user.id,
         username: user.username,
-        balance: user.balance,
-      },
+        balance: user.balance
+      }
     })
   } catch (error) {
     console.error('Login error:', error)

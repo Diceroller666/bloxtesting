@@ -11,6 +11,7 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose, mode, onSuccess }: AuthModalProps) {
   const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -24,10 +25,14 @@ export default function AuthModal({ isOpen, onClose, mode, onSuccess }: AuthModa
 
     try {
       const endpoint = mode === 'login' ? '/api/auth/login' : '/api/auth/register'
+      const body = mode === 'login' 
+        ? { username, password }
+        : { username, email, password }
+      
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(body),
       })
 
       const data = await response.json()
@@ -39,6 +44,7 @@ export default function AuthModal({ isOpen, onClose, mode, onSuccess }: AuthModa
       }
 
       setUsername('')
+      setEmail('')
       setPassword('')
       onSuccess()
       onClose()
@@ -60,6 +66,12 @@ export default function AuthModal({ isOpen, onClose, mode, onSuccess }: AuthModa
           </button>
         </div>
 
+        {error && (
+          <div className="bg-red-500 bg-opacity-20 border border-red-500 text-red-500 px-4 py-2 rounded mb-4">
+            {error}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-2">Username</label>
@@ -67,12 +79,23 @@ export default function AuthModal({ isOpen, onClose, mode, onSuccess }: AuthModa
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full bg-empire-bg-lighter border border-gray-700 rounded px-4 py-3 text-white focus:border-empire-gold focus:outline-none"
-              placeholder="Enter username"
+              className="w-full bg-empire-bg border border-gray-700 rounded px-4 py-2 focus:outline-none focus:border-empire-gold"
               required
-              minLength={3}
             />
           </div>
+
+          {mode === 'register' && (
+            <div>
+              <label className="block text-sm font-medium mb-2">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full bg-empire-bg border border-gray-700 rounded px-4 py-2 focus:outline-none focus:border-empire-gold"
+                required
+              />
+            </div>
+          )}
 
           <div>
             <label className="block text-sm font-medium mb-2">Password</label>
