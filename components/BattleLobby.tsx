@@ -273,9 +273,13 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
       
       // Step 3: After transition is enabled, start the spin
       setTimeout(() => {
+        const itemHeight = 88 // 80px (h-20) + 8px (gap-2)
+        const winningItemIndex = 15 // The winning item is at index 15 in the repeated pattern
+        const targetScroll = winningItemIndex * itemHeight // Scroll to land on winning item
+        
         const newPositions = battle.players.map(() => {
-          const randomOffset = Math.random() * 100 - 50
-          return -1980 + randomOffset // Scroll to final position
+          const randomOffset = Math.random() * 20 - 10 // Smaller random offset for precision
+          return -targetScroll + randomOffset // Scroll to final position
         })
         setReelPositions(newPositions)
       }, 20)
