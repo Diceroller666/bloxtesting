@@ -288,11 +288,14 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     setTimeout(() => {
       setIsSpinning(false)
       
+      console.log('Round items being added to history:', items)
+      
       // Add this round's values to the accumulated totals in ref
       items.forEach((item, index) => {
         playerTotalsRef.current[index] += item.value
         // Add item to player's history (newest at the front)
         playerItemHistoryRef.current[index].unshift(item)
+        console.log(`Player ${index} history:`, playerItemHistoryRef.current[index][0])
       })
       
       // Update battle state with new totals from ref
