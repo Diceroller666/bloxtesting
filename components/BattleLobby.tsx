@@ -1,5 +1,6 @@
 'use client'
 
+// Battle Lobby Component - v2
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '@/lib/AuthContext'
 
