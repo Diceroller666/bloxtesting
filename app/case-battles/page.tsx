@@ -2,14 +2,17 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { AuthProvider } from '@/lib/AuthContext'
+import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import Header from '@/components/Header'
 import Sidebar from '@/components/Sidebar'
+import AuthModal from '@/components/AuthModal'
 
-export default function CaseBattlesPage() {
+function CaseBattlesContent() {
   const router = useRouter()
+  const { user, refreshUser } = useAuth()
   const [battles, setBattles] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
   useEffect(() => {
     fetchBattles()
@@ -27,6 +30,20 @@ export default function CaseBattlesPage() {
     }
   }
 
+  const handleCreateBattleClick = () => {
+    if (!user) {
+      setShowLoginModal(true)
+    } else {
+      router.push('/case-battles/create')
+    }
+  }
+
+  const handleAuthSuccess = async () => {
+    await refreshUser()
+    setShowLoginModal(false)
+    router.push('/case-battles/create')
+  }
+
   return (
     <AuthProvider>
       <div className="flex h-screen bg-empire-bg text-white">
@@ -39,7 +56,7 @@ export default function CaseBattlesPage() {
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-3xl font-bold">Case Battles</h1>
             <button
-              onClick={() => router.push('/case-battles/create')}
+              onClick={handleCreateBattleClick}
               className="bg-empire-gold text-empire-bg px-6 py-3 rounded-lg font-semibold hover:bg-empire-gold-dark transition flex items-center gap-2"
             >
               <span className="text-xl">+</span>
@@ -55,7 +72,7 @@ export default function CaseBattlesPage() {
               <h2 className="text-2xl font-bold mb-2">No Active Battles</h2>
               <p className="text-gray-400 mb-6">Create a battle to get started!</p>
               <button
-                onClick={() => router.push('/case-battles/create')}
+                onClick={handleCreateBattleClick}
                 className="bg-empire-gold text-empire-bg px-8 py-3 rounded-lg font-semibold hover:bg-empire-gold-dark transition"
               >
                 Create Your First Battle
@@ -92,7 +109,21 @@ export default function CaseBattlesPage() {
           )}
         </main>
       </div>
+
+      <AuthModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        mode="login"
+        onSuccess={handleAuthSuccess}
+      />
     </div>
+  )
+}
+
+export default function CaseBattlesPage() {
+  return (
+    <AuthProvider>
+      <CaseBattlesContent />
     </AuthProvider>
   )
 }
