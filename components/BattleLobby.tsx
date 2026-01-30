@@ -443,6 +443,12 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
             </div>
 
             <div className="mt-8 text-center">
+              {/* Debug info - remove after testing */}
+              <div className="mb-4 p-2 bg-red-900 text-xs text-left rounded">
+                <p>DEBUG: emptySlots={emptySlots}, isCreator={String(isCreator)}, isPlayerInBattle={String(isPlayerInBattle)}</p>
+                <p>DEBUG: authLoading={String(authLoading)}, user={user?.id || 'null'}, canJoin={String(canJoin)}</p>
+              </div>
+
               {isCreator && emptySlots > 0 && (
                 <>
                   <button
@@ -457,7 +463,8 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                 </>
               )}
 
-              {canJoin && (
+              {/* Always show join button if there are empty slots and not creator */}
+              {emptySlots > 0 && !isCreator && (
                 <>
                   <button
                     onClick={handleJoinBattle}
@@ -466,20 +473,14 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                     Join Battle (💰 {totalCost.toFixed(2)})
                   </button>
                   <p className="text-sm text-gray-400 mt-2">
-                    Click to join this battle
+                    {user ? 'Click to join this battle' : 'Log in to join'}
                   </p>
                 </>
               )}
 
-              {!user && emptySlots > 0 && (
-                <p className="text-gray-400">
-                  Log in to join this battle
-                </p>
-              )}
-
               {isPlayerInBattle && !isCreator && (
-                <p className="text-gray-400">
-                  Waiting for other players to join...
+                <p className="text-gray-400 mt-4">
+                  ✓ You're in! Waiting for other players to join...
                 </p>
               )}
             </div>
