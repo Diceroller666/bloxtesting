@@ -1,13 +1,29 @@
 import { NextResponse } from 'next/server'
-import { seedItemsDatabase } from '@/lib/seed-items'
+import { supabase } from '@/lib/supabase'
+import { bloxStrikeItems } from '@/lib/seed-items-supabase'
 
 export async function POST() {
   try {
-    const items = seedItemsDatabase()
+    const results = []
+    
+    for (const item of bloxStrikeItems) {
+      const { data, error } = await supabase
+        .from('items')
+        .upsert(item, { onConflict: 'id' })
+        .select()
+      
+      if (error) {
+        console.error(`Error seeding item ${item.name} - ${item.skin}:`, error)
+      } else {
+        results.push(data)
+      }
+    }
+    
     return NextResponse.json({ 
       success: true, 
-      message: `Seeded ${items.length} items`,
-      count: items.length 
+      message: `Seeded ${bloxStrikeItems.length} BloxStrike items to Supabase`,
+      count: bloxStrikeItems.length,
+      items: results
     })
   } catch (error) {
     console.error('Error seeding items:', error)
