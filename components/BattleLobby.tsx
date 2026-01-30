@@ -34,7 +34,7 @@ interface BattleLobbyProps {
 }
 
 export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
-  const { user, loading: authLoading } = useAuth()
+  const { user } = useAuth()
   const [battle, setBattle] = useState<Battle | null>(null)
   const [loading, setLoading] = useState(true)
   const [cases, setCases] = useState<any[]>([])
@@ -347,10 +347,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const totalCost = cases.reduce((sum, c) => sum + c.price, 0)
   const emptySlots = battle.max_players - battle.players.length
   const isCreator = battle.creator_id === user?.id
-  const isPlayerInBattle = user ? battle.players.some(p => p.userId === user.id) : false
-  const canJoin = emptySlots > 0 && !isPlayerInBattle && !authLoading && user !== null
-  
-  console.log('Join button debug:', { emptySlots, isPlayerInBattle, authLoading, user: user?.id, canJoin })
+  const isPlayerInBattle = battle.players.some(p => p.userId === user?.id)
 
   return (
     <div className="min-h-screen bg-empire-bg text-white p-6">
@@ -428,62 +425,46 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                     <span className="text-gray-600">?</span>
                   </div>
                   <div className="text-gray-500 font-semibold">Waiting...</div>
-                  <div className="text-sm text-gray-600 mb-2">Empty Slot</div>
-                  
-                  {index === 0 && canJoin && (
-                    <button
-                      onClick={handleJoinBattle}
-                      className="bg-empire-gold text-empire-bg px-4 py-2 rounded-lg font-semibold hover:bg-empire-gold-dark transition text-sm mt-2"
-                    >
-                      Join (💰 {totalCost.toFixed(2)})
-                    </button>
-                  )}
+                  <div className="text-sm text-gray-600">Empty Slot</div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 text-center">
-              {/* Debug info - remove after testing */}
-              <div className="mb-4 p-2 bg-red-900 text-xs text-left rounded">
-                <p>DEBUG: emptySlots={emptySlots}, isCreator={String(isCreator)}, isPlayerInBattle={String(isPlayerInBattle)}</p>
-                <p>DEBUG: authLoading={String(authLoading)}, user={user?.id || 'null'}, canJoin={String(canJoin)}</p>
-              </div>
-
-              {isCreator && emptySlots > 0 && (
-                <>
-                  <button
-                    onClick={handleAddBot}
-                    className="bg-yellow-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-yellow-700 transition"
-                  >
-                    🤖 Call Bot to Fill Slot
-                  </button>
-                  <p className="text-sm text-gray-400 mt-2">
-                    Battle will auto-start when all slots are filled
-                  </p>
-                </>
-              )}
-
-              {/* Always show join button if there are empty slots and not creator */}
-              {emptySlots > 0 && !isCreator && (
-                <>
-                  <button
-                    onClick={handleJoinBattle}
-                    className="bg-empire-gold text-empire-bg px-8 py-3 rounded-lg font-semibold hover:bg-empire-gold-dark transition"
-                  >
-                    Join Battle (💰 {totalCost.toFixed(2)})
-                  </button>
-                  <p className="text-sm text-gray-400 mt-2">
-                    {user ? 'Click to join this battle' : 'Log in to join'}
-                  </p>
-                </>
-              )}
-
-              {isPlayerInBattle && !isCreator && (
-                <p className="text-gray-400 mt-4">
-                  ✓ You're in! Waiting for other players to join...
+            {isCreator && emptySlots > 0 && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={handleAddBot}
+                  className="bg-yellow-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-yellow-700 transition"
+                >
+                  🤖 Call Bot to Fill Slot
+                </button>
+                <p className="text-sm text-gray-400 mt-2">
+                  Battle will auto-start when all slots are filled
                 </p>
-              )}
-            </div>
+              </div>
+            )}
+
+            {!isCreator && !isPlayerInBattle && emptySlots > 0 && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={handleJoinBattle}
+                  className="bg-empire-gold text-empire-bg px-8 py-3 rounded-lg font-semibold hover:bg-empire-gold-dark transition mb-3"
+                >
+                  Join Battle (💰 {totalCost.toFixed(2)})
+                </button>
+                <p className="text-sm text-gray-400">
+                  Battle will auto-start when all slots are filled
+                </p>
+              </div>
+            )}
+
+            {!isCreator && isPlayerInBattle && (
+              <div className="mt-8 text-center">
+                <p className="text-gray-400">
+                  Waiting for other players to join...
+                </p>
+              </div>
+            )}
           </div>
         )}
 
@@ -517,8 +498,12 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
               }`}>
                 {battle.players.map((player, playerIndex) => (
                   <div key={playerIndex} className="text-center pb-2">
-                    <div className="text-sm font-semibold text-white mb-1">Toxic Waste</div>
-                    <div className="text-empire-gold font-bold text-xs">💰 15.32</div>
+                    <div className="text-sm font-semibold text-white mb-1">
+                      {roundItems[playerIndex]?.skin || 'Spinning...'}
+                    </div>
+                    <div className="text-empire-gold font-bold text-xs">
+                      💰 {roundItems[playerIndex]?.value?.toFixed(2) || '0.00'}
+                    </div>
                   </div>
                 ))}
               </div>
