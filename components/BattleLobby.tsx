@@ -34,7 +34,7 @@ interface BattleLobbyProps {
 }
 
 export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
-  const { user } = useAuth()
+  const { user, loading: authLoading } = useAuth()
   const [battle, setBattle] = useState<Battle | null>(null)
   const [loading, setLoading] = useState(true)
   const [cases, setCases] = useState<any[]>([])
@@ -348,7 +348,9 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const emptySlots = battle.max_players - battle.players.length
   const isCreator = battle.creator_id === user?.id
   const isPlayerInBattle = user ? battle.players.some(p => p.userId === user.id) : false
-  const canJoin = emptySlots > 0 && !isPlayerInBattle && user !== null
+  const canJoin = emptySlots > 0 && !isPlayerInBattle && !authLoading && user !== null
+  
+  console.log('Join button debug:', { emptySlots, isPlayerInBattle, authLoading, user: user?.id, canJoin })
 
   return (
     <div className="min-h-screen bg-empire-bg text-white p-6">
