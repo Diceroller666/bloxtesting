@@ -1,0 +1,126 @@
+[
+  {
+    "name": "Majesty",
+    "price": 25,
+    "description": "Premium case with legendary knives and weapons",
+    "items": [
+      {
+        "itemId": "item_seed_31_karambit_aurora",
+        "dropRate": 2
+      },
+      {
+        "itemId": "item_seed_33_karambit_midnight",
+        "dropRate": 3
+      },
+      {
+        "itemId": "item_seed_36_flip_knife_fade",
+        "dropRate": 5
+      },
+      {
+        "itemId": "item_seed_17_awp_typhon",
+        "dropRate": 8
+      },
+      {
+        "itemId": "item_seed_21_aug_hot_rod",
+        "dropRate": 10
+      },
+      {
+        "itemId": "item_seed_16_ak-47_sakura",
+        "dropRate": 12
+      },
+      {
+        "itemId": "item_seed_19_glock-18_fade",
+        "dropRate": 15
+      },
+      {
+        "itemId": "item_seed_11_aug_overgrowth",
+        "dropRate": 20
+      },
+      {
+        "itemId": "item_seed_22_p90_big_cat",
+        "dropRate": 25
+      }
+    ],
+    "id": "case_seed_1_majesty"
+  },
+  {
+    "name": "Bishop",
+    "price": 15,
+    "description": "Mid-tier case with epic weapons and knives",
+    "items": [
+      {
+        "itemId": "item_seed_47_gut_knife_aurora",
+        "dropRate": 5
+      },
+      {
+        "itemId": "item_seed_51_gut_knife_fade",
+        "dropRate": 8
+      },
+      {
+        "itemId": "item_seed_49_gut_knife_midnight",
+        "dropRate": 10
+      },
+      {
+        "itemId": "item_seed_2_m4a4_b-hop",
+        "dropRate": 12
+      },
+      {
+        "itemId": "item_seed_11_negev_noctiflora",
+        "dropRate": 15
+      },
+      {
+        "itemId": "item_seed_1_m4a1-s_orchids",
+        "dropRate": 18
+      },
+      {
+        "itemId": "item_seed_28_galil_irradiated",
+        "dropRate": 20
+      },
+      {
+        "itemId": "item_seed_8_ssg-08_labyrinth",
+        "dropRate": 12
+      }
+    ],
+    "id": "case_seed_2_bishop"
+  },
+  {
+    "name": "Stronghold",
+    "price": 8,
+    "description": "Budget-friendly case with rare weapons",
+    "items": [
+      {
+        "itemId": "item_seed_50_gut_knife_vanilla",
+        "dropRate": 3
+      },
+      {
+        "itemId": "item_seed_46_gut_knife_noir",
+        "dropRate": 5
+      },
+      {
+        "itemId": "item_seed_25_ssg-08_desert_strike",
+        "dropRate": 10
+      },
+      {
+        "itemId": "item_seed_18_deagle_marcy",
+        "dropRate": 15
+      },
+      {
+        "itemId": "item_seed_15_m4a1-s_retro",
+        "dropRate": 18
+      },
+      {
+        "itemId": "item_seed_7_dual_berettas_vernal",
+        "dropRate": 20
+      },
+      {
+        "itemId": "item_seed_20_xm1014_abstract",
+        "dropRate": 15
+      },
+      {
+        "itemId": "item_seed_10_tec-9_monarch",
+        "dropRate": 14
+      }
+    ],
+    "id": "case_seed_3_stronghold"
+  }
+]

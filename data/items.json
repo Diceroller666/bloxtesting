@@ -1,0 +1,606 @@
+[
+  {
+    "name": "M4A1-S",
+    "skin": "Orchids",
+    "category": "weapon",
+    "weaponType": "M4A1-S",
+    "rarity": "epic",
+    "value": 45,
+    "id": "item_seed_1_m4a1-s_orchids"
+  },
+  {
+    "name": "M4A4",
+    "skin": "B-Hop",
+    "category": "weapon",
+    "weaponType": "M4A4",
+    "rarity": "epic",
+    "value": 52,
+    "id": "item_seed_2_m4a4_b-hop"
+  },
+  {
+    "name": "Glock-18",
+    "skin": "Fuji",
+    "category": "weapon",
+    "weaponType": "Glock-18",
+    "rarity": "rare",
+    "value": 18.5,
+    "id": "item_seed_3_glock-18_fuji"
+  },
+  {
+    "name": "GALIL",
+    "skin": "Monochrome",
+    "category": "weapon",
+    "weaponType": "GALIL",
+    "rarity": "rare",
+    "value": 22,
+    "id": "item_seed_4_galil_monochrome"
+  },
+  {
+    "name": "SG-553",
+    "skin": "Dynasty",
+    "category": "weapon",
+    "weaponType": "SG-553",
+    "rarity": "epic",
+    "value": 38,
+    "id": "item_seed_5_sg-553_dynasty"
+  },
+  {
+    "name": "P250",
+    "skin": "B-250",
+    "category": "weapon",
+    "weaponType": "P250",
+    "rarity": "legendary",
+    "value": 65,
+    "id": "item_seed_6_p250_b-250"
+  },
+  {
+    "name": "Dual Berettas",
+    "skin": "Vernal",
+    "category": "weapon",
+    "weaponType": "Dual Berettas",
+    "rarity": "rare",
+    "value": 28,
+    "id": "item_seed_7_dual_berettas_vernal"
+  },
+  {
+    "name": "SSG-08",
+    "skin": "Labyrinth",
+    "category": "weapon",
+    "weaponType": "SSG-08",
+    "rarity": "epic",
+    "value": 42,
+    "id": "item_seed_8_ssg-08_labyrinth"
+  },
+  {
+    "name": "Mac-10",
+    "skin": "Dasies",
+    "category": "weapon",
+    "weaponType": "Mac-10",
+    "rarity": "uncommon",
+    "value": 12,
+    "id": "item_seed_9_mac-10_dasies"
+  },
+  {
+    "name": "Tec-9",
+    "skin": "Monarch",
+    "category": "weapon",
+    "weaponType": "Tec-9",
+    "rarity": "rare",
+    "value": 25,
+    "id": "item_seed_10_tec-9_monarch"
+  },
+  {
+    "name": "Negev",
+    "skin": "Noctiflora",
+    "category": "weapon",
+    "weaponType": "Negev",
+    "rarity": "epic",
+    "value": 48,
+    "id": "item_seed_11_negev_noctiflora"
+  },
+  {
+    "name": "AUG",
+    "skin": "Overgrowth",
+    "category": "weapon",
+    "weaponType": "AUG",
+    "rarity": "epic",
+    "value": 55,
+    "id": "item_seed_12_aug_overgrowth"
+  },
+  {
+    "name": "XM1014",
+    "skin": "Lilies",
+    "category": "weapon",
+    "weaponType": "XM1014",
+    "rarity": "rare",
+    "value": 20,
+    "id": "item_seed_13_xm1014_lilies"
+  },
+  {
+    "name": "Nova",
+    "skin": "Flutter",
+    "category": "weapon",
+    "weaponType": "Nova",
+    "rarity": "uncommon",
+    "value": 15,
+    "id": "item_seed_14_nova_flutter"
+  },
+  {
+    "name": "M4A1-S",
+    "skin": "Retro",
+    "category": "weapon",
+    "weaponType": "M4A1-S",
+    "rarity": "rare",
+    "value": 32,
+    "id": "item_seed_15_m4a1-s_retro"
+  },
+  {
+    "name": "AK-47",
+    "skin": "Sakura",
+    "category": "weapon",
+    "weaponType": "AK-47",
+    "rarity": "epic",
+    "value": 68,
+    "id": "item_seed_16_ak-47_sakura"
+  },
+  {
+    "name": "AWP",
+    "skin": "Typhon",
+    "category": "weapon",
+    "weaponType": "AWP",
+    "rarity": "legendary",
+    "value": 125,
+    "id": "item_seed_17_awp_typhon"
+  },
+  {
+    "name": "Deagle",
+    "skin": "Marcy",
+    "category": "weapon",
+    "weaponType": "Desert Eagle",
+    "rarity": "rare",
+    "value": 35,
+    "id": "item_seed_18_deagle_marcy"
+  },
+  {
+    "name": "Glock-18",
+    "skin": "Fade",
+    "category": "weapon",
+    "weaponType": "Glock-18",
+    "rarity": "epic",
+    "value": 58,
+    "id": "item_seed_19_glock-18_fade"
+  },
+  {
+    "name": "AUG",
+    "skin": "Hot Rod",
+    "category": "weapon",
+    "weaponType": "AUG",
+    "rarity": "legendary",
+    "value": 95,
+    "id": "item_seed_20_aug_hot_rod"
+  },
+  {
+    "name": "XM1014",
+    "skin": "Abstract",
+    "category": "weapon",
+    "weaponType": "XM1014",
+    "rarity": "rare",
+    "value": 28,
+    "id": "item_seed_21_xm1014_abstract"
+  },
+  {
+    "name": "TEC-9",
+    "skin": "Striker",
+    "category": "weapon",
+    "weaponType": "TEC-9",
+    "rarity": "epic",
+    "value": 42,
+    "id": "item_seed_22_tec-9_striker"
+  },
+  {
+    "name": "P250",
+    "skin": "Pulse",
+    "category": "weapon",
+    "weaponType": "P250",
+    "rarity": "rare",
+    "value": 24,
+    "id": "item_seed_23_p250_pulse"
+  },
+  {
+    "name": "P90",
+    "skin": "Big Cat",
+    "category": "weapon",
+    "weaponType": "P90",
+    "rarity": "epic",
+    "value": 52,
+    "id": "item_seed_24_p90_big_cat"
+  },
+  {
+    "name": "FAMAS",
+    "skin": "Arctic Camo",
+    "category": "weapon",
+    "weaponType": "FAMAS",
+    "rarity": "uncommon",
+    "value": 18,
+    "id": "item_seed_25_famas_arctic_camo"
+  },
+  {
+    "name": "NOVA",
+    "skin": "Heat",
+    "category": "weapon",
+    "weaponType": "Nova",
+    "rarity": "uncommon",
+    "value": 16,
+    "id": "item_seed_26_nova_heat"
+  },
+  {
+    "name": "SSG-08",
+    "skin": "Desert Strike",
+    "category": "weapon",
+    "weaponType": "SSG-08",
+    "rarity": "rare",
+    "value": 38,
+    "id": "item_seed_27_ssg-08_desert_strike"
+  },
+  {
+    "name": "GALIL",
+    "skin": "Irradiated",
+    "category": "weapon",
+    "weaponType": "GALIL",
+    "rarity": "epic",
+    "value": 45,
+    "id": "item_seed_28_galil_irradiated"
+  },
+  {
+    "name": "Karambit",
+    "skin": "Frostbite",
+    "category": "knife",
+    "weaponType": "Karambit",
+    "rarity": "legendary",
+    "value": 450,
+    "id": "item_seed_29_karambit_frostbite"
+  },
+  {
+    "name": "Karambit",
+    "skin": "Noir",
+    "category": "knife",
+    "weaponType": "Karambit",
+    "rarity": "legendary",
+    "value": 380,
+    "id": "item_seed_30_karambit_noir"
+  },
+  {
+    "name": "Karambit",
+    "skin": "Aurora",
+    "category": "knife",
+    "weaponType": "Karambit",
+    "rarity": "legendary",
+    "value": 520,
+    "id": "item_seed_31_karambit_aurora"
+  },
+  {
+    "name": "Karambit",
+    "skin": "Whiteout",
+    "category": "knife",
+    "weaponType": "Karambit",
+    "rarity": "legendary",
+    "value": 420,
+    "id": "item_seed_32_karambit_whiteout"
+  },
+  {
+    "name": "Karambit",
+    "skin": "Midnight",
+    "category": "knife",
+    "weaponType": "Karambit",
+    "rarity": "legendary",
+    "value": 480,
+    "id": "item_seed_33_karambit_midnight"
+  },
+  {
+    "name": "Karambit",
+    "skin": "Vanilla",
+    "category": "knife",
+    "weaponType": "Karambit",
+    "rarity": "legendary",
+    "value": 350,
+    "id": "item_seed_34_karambit_vanilla"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Vanilla",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 280,
+    "id": "item_seed_35_flip_knife_vanilla"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Fade",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 420,
+    "id": "item_seed_36_flip_knife_fade"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Woodland",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 320,
+    "id": "item_seed_37_flip_knife_woodland"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Naval",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 380,
+    "id": "item_seed_38_flip_knife_naval"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Whiteout",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 340,
+    "id": "item_seed_39_flip_knife_whiteout"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Safari",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 300,
+    "id": "item_seed_40_flip_knife_safari"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Violet",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 390,
+    "id": "item_seed_41_flip_knife_violet"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Midnight",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 360,
+    "id": "item_seed_42_flip_knife_midnight"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Blackwidow",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 410,
+    "id": "item_seed_43_flip_knife_blackwidow"
+  },
+  {
+    "name": "Flip Knife",
+    "skin": "Scarlet",
+    "category": "knife",
+    "weaponType": "Flip Knife",
+    "rarity": "legendary",
+    "value": 400,
+    "id": "item_seed_44_flip_knife_scarlet"
+  },
+  {
+    "name": "Gut Knife",
+    "skin": "Frostbite",
+    "category": "knife",
+    "weaponType": "Gut Knife",
+    "rarity": "epic",
+    "value": 220,
+    "id": "item_seed_45_gut_knife_frostbite"
+  },
+  {
+    "name": "Gut Knife",
+    "skin": "Noir",
+    "category": "knife",
+    "weaponType": "Gut Knife",
+    "rarity": "epic",
+    "value": 180,
+    "id": "item_seed_46_gut_knife_noir"
+  },
+  {
+    "name": "Gut Knife",
+    "skin": "Aurora",
+    "category": "knife",
+    "weaponType": "Gut Knife",
+    "rarity": "epic",
+    "value": 250,
+    "id": "item_seed_47_gut_knife_aurora"
+  },
+  {
+    "name": "Gut Knife",
+    "skin": "Whiteout",
+    "category": "knife",
+    "weaponType": "Gut Knife",
+    "rarity": "epic",
+    "value": 200,
+    "id": "item_seed_48_gut_knife_whiteout"
+  },
+  {
+    "name": "Gut Knife",
+    "skin": "Midnight",
+    "category": "knife",
+    "weaponType": "Gut Knife",
+    "rarity": "epic",
+    "value": 230,
+    "id": "item_seed_49_gut_knife_midnight"
+  },
+  {
+    "name": "Gut Knife",
+    "skin": "Vanilla",
+    "category": "knife",
+    "weaponType": "Gut Knife",
+    "rarity": "epic",
+    "value": 170,
+    "id": "item_seed_50_gut_knife_vanilla"
+  },
+  {
+    "name": "Gut Knife",
+    "skin": "Fade",
+    "category": "knife",
+    "weaponType": "Gut Knife",
+    "rarity": "epic",
+    "value": 240,
+    "id": "item_seed_51_gut_knife_fade"
+  },
+  {
+    "name": "Gut Knife",
+    "skin": "Safari",
+    "category": "knife",
+    "weaponType": "Gut Knife",
+    "rarity": "epic",
+    "value": 160,
+    "id": "item_seed_52_gut_knife_safari"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Relic",
+    "category": "keychain",
+    "rarity": "rare",
+    "value": 8.5,
+    "id": "item_seed_53_keychain_relic"
+  },
+  {
+    "name": "Keychain",
+    "skin": "CapStone",
+    "category": "keychain",
+    "rarity": "epic",
+    "value": 15,
+    "id": "item_seed_54_keychain_capstone"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Game Buddy",
+    "category": "keychain",
+    "rarity": "uncommon",
+    "value": 6,
+    "id": "item_seed_55_keychain_game_buddy"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Billiard Ball",
+    "category": "keychain",
+    "rarity": "uncommon",
+    "value": 5.5,
+    "id": "item_seed_56_keychain_billiard_ball"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Treat",
+    "category": "keychain",
+    "rarity": "rare",
+    "value": 7,
+    "id": "item_seed_57_keychain_treat"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Cassette",
+    "category": "keychain",
+    "rarity": "rare",
+    "value": 9,
+    "id": "item_seed_58_keychain_cassette"
+  },
+  {
+    "name": "Keychain",
+    "skin": "8-bit Heart",
+    "category": "keychain",
+    "rarity": "epic",
+    "value": 12,
+    "id": "item_seed_59_keychain_8-bit_heart"
+  },
+  {
+    "name": "Keychain",
+    "skin": "SouthPaw",
+    "category": "keychain",
+    "rarity": "uncommon",
+    "value": 5,
+    "id": "item_seed_60_keychain_southpaw"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Soda Pop",
+    "category": "keychain",
+    "rarity": "uncommon",
+    "value": 4.5,
+    "id": "item_seed_61_keychain_soda_pop"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Flora",
+    "category": "keychain",
+    "rarity": "rare",
+    "value": 7.5,
+    "id": "item_seed_62_keychain_flora"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Anchor",
+    "category": "keychain",
+    "rarity": "common",
+    "value": 3,
+    "id": "item_seed_63_keychain_anchor"
+  },
+  {
+    "name": "Keychain",
+    "skin": "For Sale",
+    "category": "keychain",
+    "rarity": "uncommon",
+    "value": 4,
+    "id": "item_seed_64_keychain_for_sale"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Lil'Nade",
+    "category": "keychain",
+    "rarity": "rare",
+    "value": 8,
+    "id": "item_seed_65_keychain_lil'nade"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Target",
+    "category": "keychain",
+    "rarity": "uncommon",
+    "value": 5,
+    "id": "item_seed_66_keychain_target"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Credit",
+    "category": "keychain",
+    "rarity": "common",
+    "value": 2.5,
+    "id": "item_seed_67_keychain_credit"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Bullet",
+    "category": "keychain",
+    "rarity": "uncommon",
+    "value": 4.5,
+    "id": "item_seed_68_keychain_bullet"
+  },
+  {
+    "name": "Keychain",
+    "skin": "Flight Tag",
+    "category": "keychain",
+    "rarity": "rare",
+    "value": 6.5,
+    "id": "item_seed_69_keychain_flight_tag"
+  }
+]

@@ -1,0 +1,701 @@
+[
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_2_bishop",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769736642418_3inmln5ur",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769736646969",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T01:30:42.418Z",
+    "startedAt": "2026-01-30T01:30:47.386Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_2_bishop",
+      "case_seed_3_stronghold"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769736847856_vrcvxr0mv",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769739192874",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T01:34:07.856Z",
+    "startedAt": "2026-01-30T02:13:12.906Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769737433732_wdvqnt63q",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769739749848",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T01:43:53.732Z",
+    "startedAt": "2026-01-30T02:22:29.866Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_2_bishop",
+      "case_seed_3_stronghold"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769737532872_0a4hiu8qy",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769737535131",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T01:45:32.872Z",
+    "startedAt": "2026-01-30T01:45:35.515Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_2_bishop",
+      "case_seed_3_stronghold"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769737772516_y46tg6fbn",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769737774355",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T01:49:32.516Z",
+    "startedAt": "2026-01-30T01:49:34.369Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_2_bishop",
+      "case_seed_3_stronghold"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769737922168_i3b36ernn",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769737923802",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T01:52:02.168Z",
+    "startedAt": "2026-01-30T01:52:03.819Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_2_bishop",
+      "case_seed_3_stronghold"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769738414300_251hief75",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769738415270",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:00:14.300Z",
+    "startedAt": "2026-01-30T02:00:15.284Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "team",
+    "playerCount": "2v2",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop"
+    ],
+    "maxPlayers": 4,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769738671849_khvrlv54s",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769738673218",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769738674258",
+        "username": "BOT Beta",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769738674456",
+        "username": "BOT Gamma",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:04:31.849Z",
+    "startedAt": "2026-01-30T02:04:34.464Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769738772579_hv2fytcgq",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769738773833",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:06:12.579Z",
+    "startedAt": "2026-01-30T02:06:13.849Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop",
+      "case_seed_3_stronghold",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769739646087_19awk7dqv",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769739647382",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:20:46.087Z",
+    "startedAt": "2026-01-30T02:20:47.398Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769739941749_nxrooym8l",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769739942704",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:25:41.749Z",
+    "startedAt": "2026-01-30T02:25:42.720Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769739975769_1644hre7m",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769739976783",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:26:15.769Z",
+    "startedAt": "2026-01-30T02:26:16.805Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769740115746_gtp14n9zq",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740116855",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:28:35.746Z",
+    "startedAt": "2026-01-30T02:28:36.874Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769740628149_azoe0fi5n",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740629254",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:37:08.149Z",
+    "startedAt": "2026-01-30T02:37:09.274Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "team",
+    "playerCount": "2v2",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 4,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769740830380_0np8aidj6",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740831299",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740832182",
+        "username": "BOT Beta",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740832322",
+        "username": "BOT Gamma",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:40:30.380Z",
+    "startedAt": "2026-01-30T02:40:32.336Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": true,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769740926665_lbsk2t4d3",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740927507",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:42:06.665Z",
+    "startedAt": "2026-01-30T02:42:07.518Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "standard",
+    "playerCount": "1v1",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 2,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769740948210_ox11u8ctv",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740948947",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:42:28.210Z",
+    "startedAt": "2026-01-30T02:42:28.967Z"
+  },
+  {
+    "creatorId": "1769644647680",
+    "mode": "team",
+    "playerCount": "2v2",
+    "cases": [
+      "case_seed_3_stronghold",
+      "case_seed_2_bishop",
+      "case_seed_1_majesty"
+    ],
+    "maxPlayers": 4,
+    "settings": {
+      "empireSpin": true,
+      "fastMode": false,
+      "reverseMode": false,
+      "privateMode": false
+    },
+    "id": "battle_1769740971246_yuw7a11da",
+    "status": "in_progress",
+    "players": [
+      {
+        "userId": "1769644647680",
+        "username": "andious",
+        "isBot": false,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740972282",
+        "username": "BOT Alpha",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740972654",
+        "username": "BOT Beta",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      },
+      {
+        "userId": "bot_1769740972807",
+        "username": "BOT Gamma",
+        "isBot": true,
+        "totalUnboxed": 0,
+        "items": []
+      }
+    ],
+    "createdAt": "2026-01-30T02:42:51.246Z",
+    "startedAt": "2026-01-30T02:42:52.819Z"
+  }
+]
