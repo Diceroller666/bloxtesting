@@ -34,6 +34,17 @@ interface BattleLobbyProps {
   onBack: () => void
 }
 
+// Get emoji based on item category
+const getItemEmoji = (category: string) => {
+  switch (category) {
+    case 'knife': return '🔪'
+    case 'keychain': return '🔗'
+    case 'gun': return '🔫'
+    case 'glove': return '🧤'
+    default: return '🔫'
+  }
+}
+
 export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const { user } = useAuth()
   const [battle, setBattle] = useState<Battle | null>(null)
@@ -50,6 +61,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const [roundItems, setRoundItems] = useState<any[]>([])
   const [isUpdatingBalance, setIsUpdatingBalance] = useState(false)
   const [availableItems, setAvailableItems] = useState<any[]>([])
+  const [reelEmojis, setReelEmojis] = useState<string[][]>([]) // Pre-generated emojis for each player's reel
   
   // Use refs to track accumulated totals across all rounds (avoids stale closure issues)
   const playerTotalsRef = useRef<number[]>([])
@@ -230,6 +242,24 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
     })
     setRoundItems(items)
     
+    // Pre-generate random emojis for each player's reel (90 items each)
+    const generatedReelEmojis = battle.players.map((_, playerIdx) => {
+      return Array.from({ length: 90 }).map((_, itemIndex) => {
+        const repeatedIndex = itemIndex % 30
+        const isWinningItem = repeatedIndex === 15
+        
+        if (isWinningItem) {
+          // Winning position shows the actual item
+          return getItemEmoji(items[playerIdx].category)
+        } else {
+          // Random emoji for other positions
+          const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)]
+          return getItemEmoji(randomItem.category)
+        }
+      })
+    })
+    setReelEmojis(generatedReelEmojis)
+    
     // Store this round's results in ref
     allRoundResultsRef.current.push(items)
     
@@ -350,17 +380,6 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
   const emptySlots = battle.max_players - battle.players.length
   const isCreator = battle.creator_id === user?.id
   const isPlayerInBattle = battle.players.some(p => p.userId === user?.id)
-
-  // Get emoji based on item category
-  const getItemEmoji = (category: string) => {
-    switch (category) {
-      case 'knife': return '🔪'
-      case 'keychain': return '🔗'
-      case 'gun': return '🔫'
-      case 'glove': return '🧤'
-      default: return '🔫'
-    }
-  }
 
   return (
     <div className="min-h-screen bg-empire-bg text-white p-6">
@@ -546,16 +565,8 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                           const repeatedIndex = itemIndex % 30
                           const isWinningItem = repeatedIndex === 15
                           
-                          // For winning item, show the actual item. For others, show random items
-                          let displayEmoji = '🔫'
-                          if (isWinningItem && roundItems[playerIndex]) {
-                            displayEmoji = getItemEmoji(roundItems[playerIndex].category)
-                          } else if (availableItems.length > 0) {
-                            // Show truly random item emoji for non-winning slots
-                            const randomIndex = Math.floor(Math.random() * availableItems.length)
-                            const randomItem = availableItems[randomIndex]
-                            displayEmoji = getItemEmoji(randomItem.category)
-                          }
+                          // Use pre-generated emoji from state (or fallback)
+                          const displayEmoji = reelEmojis[playerIndex]?.[itemIndex] || '🔫'
                           
                           return (
                             <div
