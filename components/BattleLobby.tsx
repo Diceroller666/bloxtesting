@@ -602,9 +602,7 @@ export default function BattleLobby({ battleId, onBack }: BattleLobbyProps) {
                           return (
                             <div
                               key={itemIndex}
-                              className={`flex-shrink-0 h-20 rounded flex items-center justify-center ${
-                                isWinningItem ? 'bg-empire-bg-lighter' : 'bg-empire-bg-light'
-                              }`}
+                              className="flex-shrink-0 h-20 rounded flex items-center justify-center bg-empire-bg-light"
                             >
                               <div className="text-4xl">{displayEmoji}</div>
                             </div>
